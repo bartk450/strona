@@ -9,4 +9,4 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "hangmen-words"
-database_id = "WPISZ_SWOJE_DATABASE_ID"
+database_id = "581e7a90-677d-44c5-b573-2b3425928f03"
