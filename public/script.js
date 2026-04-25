@@ -620,7 +620,7 @@ function actuallyStartGame(id) {
     else if(id === 'tomus') { resetTomus(); tomusLoop(); } 
     else if(id === 'blockbuster') { resetBlockbuster(); blockbusterLoop(); } 
     else if(id === 'krol_kibla') { resetKibel(); kibelLoop(); }
-    else if(id === 'wisielec') { resetHangman(); hangmanLoop(); } 
+    else if(id === 'wisielec') { resetHangman().then(() => hangmanLoop()); }
     else if(id === 'whack') { startWhack(); } 
     else if(id === 'slide') { initSlide(); }
     else if(id === 'factory') { resetFactory(); factoryLoop(); } 
@@ -2153,15 +2153,32 @@ const polishWords = [
     { word: "PRZESZKODA", def: "Coś, co stoi na drodze i utrudnia przejście." }
 ];
 
-function resetHangman() {
+async function resetHangman() {
     if(!hctx && hangCanvas) hctx = hangCanvas.getContext("2d");
-    
-    const wordObj = polishWords[Math.floor(Math.random() * polishWords.length)];
+
+    // Pobierz słowo z bazy D1 przez API, fallback do lokalnych słów
+    let wordObj;
+    try {
+        const res = await fetch('/api/words?action=random');
+        if (res.ok) {
+            const data = await res.json();
+            if (data && data.word) {
+                wordObj = { word: data.word.toUpperCase(), def: data.hint || data.def || 'Brak podpowiedzi' };
+            }
+        }
+    } catch(e) {}
+
+    // Fallback do lokalnych słów jeśli API nie odpowie
+    if (!wordObj) {
+        const fallback = polishWords[Math.floor(Math.random() * polishWords.length)];
+        wordObj = { word: fallback.word, def: fallback.def };
+    }
+
     hangWord = wordObj.word;
     hangDef = wordObj.def;
-    
+
     if (hangDefSpan) hangDefSpan.textContent = hangDef;
-    
+
     guessedLetters = [];
     hangErrors = 0;
     usedHint = false;
@@ -2365,7 +2382,7 @@ function checkHangmanStatus() {
         renderHangman();
         setTimeout(() => { 
             showOutroCard('wisielec', 'Szubienica Zajęta', `Szukane słowo to: "${hangWord}". Spróbuj ponownie!`, 'C', false);
-            resetHangman(); 
+            resetHangman();
         }, 100);
     }
 }
@@ -3557,17 +3574,47 @@ function initQuizCategoryScreen() {
     });
 }
 
-function startQuizCategory(catKey) {
+async function startQuizCategory(catKey) {
+    // Spróbuj pobrać słowa z bazy D1 i zamień na pytania quizowe
+    let dbQuestions = [];
+    try {
+        const url = catKey === 'mix'
+            ? '/api/words?action=list'
+            : `/api/words?action=list&cat=${encodeURIComponent(catKey)}`;
+        const res = await fetch(url);
+        if (res.ok) {
+            const data = await res.json();
+            if (data.words && data.words.length >= 4) {
+                // Zamień słowa z bazy na pytania quizowe
+                const allWords = data.words;
+                dbQuestions = allWords.map(entry => {
+                    // 3 losowe błędne odpowiedzi z innych słów
+                    const others = allWords.filter(w => w.word !== entry.word);
+                    const wrong = others.sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.word);
+                    return {
+                        q: `${entry.hint ? '[' + entry.hint + '] ' : ''}${entry.def || 'Co to jest: ' + entry.word + '?'}`,
+                        a: entry.word,
+                        wrong: wrong.length === 3 ? wrong : ['błąd1','błąd2','błąd3']
+                    };
+                }).filter(q => q.wrong.length === 3);
+            }
+        }
+    } catch(e) {}
+
+    // Połącz pytania z bazy z lokalnymi
     let pool = [];
     if (catKey === 'mix') {
         Object.values(QUIZ_QUESTIONS).forEach(qs => pool.push(...qs));
         quizState.category = 'Mix';
     } else {
-        pool = [...QUIZ_QUESTIONS[catKey]];
+        pool = [...(QUIZ_QUESTIONS[catKey] || [])];
         quizState.category = QUIZ_CATEGORIES[catKey]?.label || catKey;
     }
-    // Shuffle and pick 10
+
+    // Dodaj pytania z bazy (bez duplikatów)
+    pool = [...pool, ...dbQuestions];
     pool.sort(() => Math.random() - 0.5);
+
     quizState.questions = pool.slice(0, quizState.total);
     quizState.current = 0;
     quizState.score = 0;
@@ -3790,14 +3837,4 @@ async function fetchHangmanWord() {
     }
 }
 
-// Monkey-patch resetHangman to use API
-const _origResetHangman = window.resetHangman;
-window.resetHangman = async function() {
-    const wordData = await fetchHangmanWord();
-    if (window._setHangmanWord) {
-        window._setHangmanWord(wordData.word.toUpperCase(), wordData.hint || 'Brak podpowiedzi', wordData.def || '');
-    } else if (_origResetHangman) {
-        _origResetHangman();
-    }
-};
-
+// Wisielec pobiera słowa z /api/words (D1) — patrz funkcja resetHangman powyżej
