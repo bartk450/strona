@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKK GRY Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- MENU GRID -->
+<div class="container" id="menu">
+
+<!-- HEADER -->
+<header id="siteHeader">
+    <div class="header-eyebrow">✦ portal gier ✦</div>
+    <h1 class="header-title">KKK GRY</h1>
+    <p class="header-sub">Czternaście gier. Jeden portal. Jeden cel.</p>
+    <div id="progressPill">
+        <strong id="gamesWonText">0</strong><span>/ 14 ukończono</span>
+        <div class="pill-bar"><div class="pill-fill" id="pillFill"></div></div>
+    </div>
+</header>
+
+    <div class="block" id="block-shooter"     onclick="startGame('shooter')"
+         style="--block-accent:#00ffff;--block-glow:rgba(0,255,255,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">01</div>
+        <div class="block-icon">🚀</div>
+        <div class="block-name">Space Shooter</div>
+        <div class="block-tag">AKCJA</div>
+    </div>
+    <div class="block" id="block-tictactoe"   onclick="startGame('tictactoe')"
+         style="--block-accent:#ff00ff;--block-glow:rgba(255,0,255,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">02</div>
+        <div class="block-icon">⭕</div>
+        <div class="block-name">Kółko i Krzyżyk</div>
+        <div class="block-tag">LOGIKA</div>
+    </div>
+    <div class="block" id="block-pingpong"    onclick="startGame('pingpong')"
+         style="--block-accent:#74b9ff;--block-glow:rgba(116,185,255,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">03</div>
+        <div class="block-icon">🏓</div>
+        <div class="block-name">Ping Pong AI</div>
+        <div class="block-tag">SPORT</div>
+    </div>
+    <div class="block" id="block-solitaire"   onclick="startGame('solitaire')"
+         style="--block-accent:#2ecc71;--block-glow:rgba(46,204,113,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">04</div>
+        <div class="block-icon">🃏</div>
+        <div class="block-name">Pasjans</div>
+        <div class="block-tag">KARTY</div>
+    </div>
+    <div class="block" id="block-dino"        onclick="startGame('dino')"
+         style="--block-accent:#00d2d3;--block-glow:rgba(0,210,211,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">05</div>
+        <div class="block-icon">🦖</div>
+        <div class="block-name">Dino Run</div>
+        <div class="block-tag">ENDLESS</div>
+    </div>
+    <div class="block" id="block-tomus"       onclick="startGame('tomus')"
+         style="--block-accent:#ff0055;--block-glow:rgba(255,0,85,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">06</div>
+        <div class="block-icon">💉</div>
+        <div class="block-name">Tomuś Strzykawa</div>
+        <div class="block-tag">ZRĘCZNOŚĆ</div>
+    </div>
+    <div class="block" id="block-krol_kibla"  onclick="startGame('krol_kibla')"
+         style="--block-accent:#f1c40f;--block-glow:rgba(241,196,15,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">07</div>
+        <div class="block-icon">👑</div>
+        <div class="block-name">Król Kibla</div>
+        <div class="block-tag">SURVIVAL</div>
+    </div>
+    <div class="block" id="block-wisielec"    onclick="startGame('wisielec')"
+         style="--block-accent:#f1c40f;--block-glow:rgba(241,196,15,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">08</div>
+        <div class="block-icon">😵</div>
+        <div class="block-name">Wisielec</div>
+        <div class="block-tag">SŁOWA</div>
+    </div>
+    <div class="block" id="block-blockbuster" onclick="startGame('blockbuster')"
+         style="--block-accent:#f39c12;--block-glow:rgba(243,156,18,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">09</div>
+        <div class="block-icon">🧩</div>
+        <div class="block-name">Block Buster</div>
+        <div class="block-tag">PUZZLE</div>
+    </div>
+    <div class="block" id="block-whack"       onclick="startGame('whack')"
+         style="--block-accent:#d4ac0d;--block-glow:rgba(212,172,13,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">10</div>
+        <div class="block-icon">🔨</div>
+        <div class="block-name">Uderz Chińczyka</div>
+        <div class="block-tag">REFLEKS</div>
+    </div>
+    <div class="block" id="block-slide"       onclick="startGame('slide')"
+         style="--block-accent:#e74c3c;--block-glow:rgba(231,76,60,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">11</div>
+        <div class="block-icon">🟥</div>
+        <div class="block-name">Slide Puzzle</div>
+        <div class="block-tag">LOGIKA</div>
+    </div>
+    <div class="block" id="block-factory"     onclick="startGame('factory')"
+         style="--block-accent:#8e44ad;--block-glow:rgba(142,68,173,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">12</div>
+        <div class="block-icon">🏭</div>
+        <div class="block-name">Fabryka</div>
+        <div class="block-tag">SHOOTER</div>
+    </div>
+    <div class="block" id="block-flappy"      onclick="startGame('flappy')"
+         style="--block-accent:#f1c40f;--block-glow:rgba(241,196,15,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">13</div>
+        <div class="block-icon">🐦</div>
+        <div class="block-name">Flappy Bird</div>
+        <div class="block-tag">ARCADE</div>
+    </div>
+    <div class="block" id="block-quiz" onclick="startGame('quiz')"
+         style="--block-accent:#f39c12;--block-glow:rgba(243,156,18,.12);">
+        <div class="checkmark">✔</div>
+        <div class="block-num">14</div>
+        <div class="block-icon">🧠</div>
+        <div class="block-name">Quiz</div>
+        <div class="block-tag">WIEDZA</div>
+    </div>
+    <div class="block coming-soon" onclick="void(0)"
+         style="--block-accent:#555;--block-glow:rgba(80,80,80,.1);">
+        <div class="block-num">15</div>
+        <div class="block-icon">❓</div>
+        <div class="block-name">Gra 15</div>
+        <div class="block-tag">WKRÓTCE</div>
+    </div>
+    <div class="block coming-soon" onclick="void(0)"
+         style="--block-accent:#555;--block-glow:rgba(80,80,80,.1);">
+        <div class="block-num">16</div>
+        <div class="block-icon">❓</div>
+        <div class="block-name">Gra 16</div>
+        <div class="block-tag">WKRÓTCE</div>
+    </div>
+
+</div>
+
+<!-- FINALNY PRZYCISK -->
+<div id="finalButtonContainer">
+    <button id="finalButton" disabled onclick="window.location.href='podstrona/podstrona.html'">
+        <span id="finalBtnText">🔒 Zablokowane</span>
+        <small><span id="gamesWonText2">0</span> / 14 ukończono</small>
+    </button>
+</div>
+
+<!-- SHOOTER -->
+<div id="shooter" class="game game-layout" style="--ga:#00ffff;background:linear-gradient(135deg,#050B14,#0d1527,#1A0B2E);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stars -->
+            <circle cx="20" cy="30" r="1.5" fill="white" opacity="0.8" style="animation:decoPulse 2.1s 0s infinite"/>
+            <circle cx="60" cy="15" r="1" fill="white" opacity="0.6" style="animation:decoPulse 1.7s 0.3s infinite"/>
+            <circle cx="140" cy="40" r="2" fill="white" opacity="0.7" style="animation:decoPulse 2.4s 0.8s infinite"/>
+            <circle cx="170" cy="20" r="1.5" fill="white" opacity="0.5" style="animation:decoPulse 1.9s 1.1s infinite"/>
+            <circle cx="95" cy="50" r="1" fill="white" opacity="0.9" style="animation:decoPulse 2.2s 0.5s infinite"/>
+            <circle cx="30" cy="80" r="1.5" fill="white" opacity="0.6" style="animation:decoPulse 1.8s 0.2s infinite"/>
+            <circle cx="155" cy="90" r="1" fill="white" opacity="0.7" style="animation:decoPulse 2.3s 1.4s infinite"/>
+            <!-- Planet -->
+            <circle cx="140" cy="75" r="30" fill="#1a0b2e" stroke="#6c3483" stroke-width="2" style="animation:decoPulse 3s infinite"/>
+            <circle cx="140" cy="75" r="22" fill="#2c1a4e"/>
+            <ellipse cx="140" cy="75" rx="42" ry="10" fill="none" stroke="#8e44ad" stroke-width="2.5" opacity="0.7"/>
+            <!-- Ship -->
+            <g style="animation:decoFloat 2.5s ease-in-out infinite" transform="translate(55,160)">
+                <polygon points="35,0 65,60 50,50 50,65 20,65 20,50 5,60" fill="#00ffff" opacity="0.9"/>
+                <polygon points="35,10 55,55 45,48 45,60 25,60 25,48 15,55" fill="#0af"/>
+                <rect x="28" y="40" width="14" height="10" rx="3" fill="#003344"/>
+                <circle cx="35" cy="35" r="6" fill="#00eeee" opacity="0.8" style="animation:decoPulse 1.2s infinite"/>
+                <!-- Engine fire -->
+                <ellipse cx="27" cy="68" rx="5" ry="8" fill="#ff6600" opacity="0.9" style="animation:decoPulse 0.3s infinite"/>
+                <ellipse cx="43" cy="68" rx="5" ry="8" fill="#ff6600" opacity="0.9" style="animation:decoPulse 0.3s 0.15s infinite"/>
+                <ellipse cx="27" cy="68" rx="3" ry="5" fill="#ffcc00"/>
+                <ellipse cx="43" cy="68" rx="3" ry="5" fill="#ffcc00"/>
+            </g>
+            <!-- Enemies -->
+            <g style="animation:decoShoot 3s 0s infinite">
+                <rect x="-10" y="280" width="22" height="16" rx="4" fill="#e74c3c"/>
+                <circle cx="4" cy="280" r="4" fill="#c0392b"/>
+                <rect x="0" y="274" width="8" height="6" rx="2" fill="#ff6666"/>
+            </g>
+            <g style="animation:decoShoot 3s 1s infinite">
+                <rect x="-10" y="310" width="22" height="16" rx="4" fill="#9b59b6"/>
+                <circle cx="4" cy="310" r="4" fill="#8e44ad"/>
+                <rect x="0" y="304" width="8" height="6" rx="2" fill="#c39bd3"/>
+            </g>
+            <!-- Laser beam -->
+            <line x1="70" y1="220" x2="70" y2="290" stroke="#00ffff" stroke-width="2" opacity="0.6" style="animation:decoPulse 0.5s infinite"/>
+        </svg>
+        <div class="game-deco-title">Space Shooter</div>
+    </div>
+<div class="game-left">
+        <h2>🚀 Space Shooter</h2>
+        <div class="status-bar">Poziom: <span id="level">1</span></div>
+        <canvas id="canvas" width="400" height="500"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#050B14,#0a1020,#1A0B2E);">
+        
+        <div class="sp-section">
+            <div class="sp-label">STATYSTYKI</div>
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="shooterSLevel" class="sp-val">1</span><span class="sp-lbl">Fala</span></div>
+                <div class="sp-stat"><span id="shooterSShots" class="sp-val">0</span><span class="sp-lbl">Strzały</span></div>
+                <div class="sp-stat"><span class="sp-val">10</span><span class="sp-lbl">Cel</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">FALE</div>
+            <div class="sp-waves" id="shooterWaves"></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">STEROWANIE</div>
+            <div class="sp-ctrl"><span class="sp-key">🖱️</span><span>Ruch statku</span></div>
+            <div class="sp-ctrl"><span class="sp-key">LPM</span><span>Strzał</span></div>
+            <div class="sp-ctrl"><span class="sp-key">💚</span><span>Power-up: rapid fire</span></div>
+        </div>
+        <div class="sp-bignum" id="shooterBigLvl">01<span style="font-size:18px;opacity:0.6;margin-left:6px;">/ 10</span></div>
+    </div>
+</div>
+
+<!-- DINO -->
+<div id="dino" class="game game-layout" style="--ga:#00d2d3;background:linear-gradient(135deg,#1a2a1a,#2c3e50,#1a3a4a);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Sky -->
+            <circle cx="30" cy="40" r="25" fill="#f39c12" opacity="0.8" style="animation:decoPulse 4s infinite"/>
+            <circle cx="30" cy="40" r="20" fill="#f1c40f"/>
+            <!-- Clouds -->
+            <ellipse cx="120" cy="35" rx="30" ry="14" fill="white" opacity="0.7"/>
+            <ellipse cx="140" cy="28" rx="20" ry="12" fill="white" opacity="0.7"/>
+            <ellipse cx="100" cy="30" rx="18" ry="10" fill="white" opacity="0.7"/>
+            <!-- Ground -->
+            <rect x="0" y="310" width="180" height="40" fill="#c8a96e"/>
+            <rect x="0" y="308" width="180" height="5" fill="#e8c97e"/>
+            <!-- Cactus 1 -->
+            <rect x="25" y="265" width="12" height="50" rx="6" fill="#27ae60"/>
+            <rect x="10" y="278" width="16" height="8" rx="4" fill="#27ae60"/>
+            <rect x="37" y="285" width="14" height="8" rx="4" fill="#27ae60"/>
+            <!-- Cactus 2 -->
+            <rect x="130" y="272" width="10" height="43" rx="5" fill="#2ecc71"/>
+            <rect x="118" y="283" width="13" height="7" rx="3.5" fill="#2ecc71"/>
+            <!-- Dino running -->
+            <g style="animation:decoRun 0.4s ease-in-out infinite; transform-origin:90px 300px">
+                <!-- body -->
+                <ellipse cx="90" cy="285" rx="22" ry="15" fill="#34495e"/>
+                <!-- head -->
+                <ellipse cx="112" cy="272" rx="14" ry="11" fill="#34495e"/>
+                <circle cx="118" cy="268" r="3" fill="white"/>
+                <circle cx="119" cy="268" r="1.5" fill="#333"/>
+                <!-- mouth -->
+                <path d="M112 277 Q118 281 124 277" stroke="#555" stroke-width="1.5" fill="none"/>
+                <!-- tail -->
+                <path d="M68 285 Q50 282 45 295" stroke="#34495e" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <!-- legs -->
+                <rect x="80" y="295" width="8" height="16" rx="4" fill="#2c3e50"/>
+                <rect x="94" y="295" width="8" height="16" rx="4" fill="#2c3e50" style="animation:decoWiggle 0.4s infinite"/>
+                <!-- spikes -->
+                <polygon points="75,278 79,268 83,278" fill="#2c3e50"/>
+                <polygon points="83,276 87,264 91,276" fill="#2c3e50"/>
+                <polygon points="91,276 95,266 99,276" fill="#2c3e50"/>
+            </g>
+            <!-- Coins -->
+            <circle cx="55" cy="240" r="8" fill="#f1c40f" style="animation:decoFloat 1.8s 0s infinite"/>
+            <circle cx="55" cy="240" r="5" fill="#f39c12"/>
+            <circle cx="100" cy="225" r="8" fill="#f1c40f" style="animation:decoFloat 1.8s 0.6s infinite"/>
+            <circle cx="100" cy="225" r="5" fill="#f39c12"/>
+            <circle cx="145" cy="238" r="8" fill="#f1c40f" style="animation:decoFloat 1.8s 1.2s infinite"/>
+            <circle cx="145" cy="238" r="5" fill="#f39c12"/>
+        </svg>
+        <div class="game-deco-title">Dino Run</div>
+    </div>
+<div class="game-left">
+        <h2>🦖 Dino Run</h2>
+        <div class="status-bar">Czas: <span id="dinoTime">0</span>s / 60s | Monety: <span id="dinoCoins">0</span></div>
+        <canvas id="dinoCanvas" width="800" height="400"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="restartDino()">↺ Resetuj</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#0d1f0d,#1a2d1a,#0d2233);">
+        
+        <div class="sp-section">
+            <div class="sp-label">CZAS</div>
+            <div style="display:flex;justify-content:center;">
+            <svg viewBox="0 0 110 110" width="130" height="130">
+                <circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="9"/>
+                <circle id="dinoTimerArc" cx="55" cy="55" r="46" fill="none" stroke="#00d2d3" stroke-width="9"
+                    stroke-dasharray="289" stroke-dashoffset="289" stroke-linecap="round"
+                    transform="rotate(-90 55 55)" style="transition:stroke-dashoffset 1s linear;"/>
+                <text x="55" y="51" text-anchor="middle" fill="#00d2d3" font-size="20" font-weight="900" font-family="Segoe UI,Arial,sans-serif" id="dinoTimerTxt">0</text>
+                <text x="55" y="67" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="Segoe UI,Arial,sans-serif">/ 60s</text>
+            </svg></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="dinoSCoins" class="sp-val">0</span><span class="sp-lbl">💰 Monety</span></div>
+                <div class="sp-stat"><span id="dinoSSpeed" class="sp-val">5</span><span class="sp-lbl">⚡ Pręd.</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">OCENA</div>
+            <div class="sp-obj">🥇 35+ monet → <b>S</b></div>
+            <div class="sp-obj">🥈 15–34 → <b>A</b></div>
+            <div class="sp-obj">🥉 0–14 → <b>B</b></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">STEROWANIE</div>
+            <div class="sp-ctrl"><span class="sp-key">SPACJA</span><span>Skok</span></div>
+            <div class="sp-ctrl"><span class="sp-key">🖱️ Klik</span><span>Skok</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- TICTACTOE -->
+<div id="tictactoe" class="game game-layout" style="--ga:#ff00ff;background:linear-gradient(135deg,#0d0d0d,#1a0033);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid lines -->
+            <line x1="40" y1="110" x2="140" y2="110" stroke="#ff00ff" stroke-width="3" opacity="0.6"/>
+            <line x1="40" y1="143" x2="140" y2="143" stroke="#ff00ff" stroke-width="3" opacity="0.6"/>
+            <line x1="73" y1="77" x2="73" y2="177" stroke="#ff00ff" stroke-width="3" opacity="0.6"/>
+            <line x1="107" y1="77" x2="107" y2="177" stroke="#ff00ff" stroke-width="3" opacity="0.6"/>
+            <!-- X marks -->
+            <line x1="50" y1="85" x2="65" y2="100" stroke="#00ffff" stroke-width="4" stroke-linecap="round" style="animation:decoPulse 2s infinite"/>
+            <line x1="65" y1="85" x2="50" y2="100" stroke="#00ffff" stroke-width="4" stroke-linecap="round" style="animation:decoPulse 2s infinite"/>
+            <line x1="118" y1="118" x2="133" y2="133" stroke="#00ffff" stroke-width="4" stroke-linecap="round" style="animation:decoPulse 2s 0.3s infinite"/>
+            <line x1="133" y1="118" x2="118" y2="133" stroke="#00ffff" stroke-width="4" stroke-linecap="round" style="animation:decoPulse 2s 0.3s infinite"/>
+            <line x1="50" y1="152" x2="65" y2="167" stroke="#00ffff" stroke-width="4" stroke-linecap="round" style="animation:decoPulse 2s 0.6s infinite"/>
+            <line x1="65" y1="152" x2="50" y2="167" stroke="#00ffff" stroke-width="4" stroke-linecap="round" style="animation:decoPulse 2s 0.6s infinite"/>
+            <!-- O marks -->
+            <circle cx="125" cy="91" r="10" fill="none" stroke="#ff00ff" stroke-width="4" style="animation:decoPulse 2s 0.15s infinite"/>
+            <circle cx="57" cy="127" r="10" fill="none" stroke="#ff00ff" stroke-width="4" style="animation:decoPulse 2s 0.45s infinite"/>
+            <circle cx="125" cy="160" r="10" fill="none" stroke="#ff00ff" stroke-width="4" style="animation:decoPulse 2s 0.75s infinite"/>
+            <!-- Win line through O's -->
+            <line x1="125" y1="91" x2="125" y2="160" stroke="#ff00ff" stroke-width="3" opacity="0.5" stroke-dasharray="6 3"/>
+            <!-- AI chip -->
+            <g transform="translate(55, 240)" style="animation:decoFloat 3s infinite">
+                <rect x="5" y="5" width="60" height="60" rx="8" fill="#1a0033" stroke="#ff00ff" stroke-width="2"/>
+                <rect x="15" y="15" width="40" height="40" rx="4" fill="#2d0055"/>
+                <text x="35" y="42" text-anchor="middle" font-size="22" font-family="monospace" fill="#ff00ff">AI</text>
+                <!-- Pins -->
+                <rect x="0" y="20" width="6" height="4" rx="2" fill="#ff00ff" opacity="0.7"/>
+                <rect x="0" y="32" width="6" height="4" rx="2" fill="#ff00ff" opacity="0.7"/>
+                <rect x="0" y="44" width="6" height="4" rx="2" fill="#ff00ff" opacity="0.7"/>
+                <rect x="64" y="20" width="6" height="4" rx="2" fill="#ff00ff" opacity="0.7"/>
+                <rect x="64" y="32" width="6" height="4" rx="2" fill="#ff00ff" opacity="0.7"/>
+                <rect x="64" y="44" width="6" height="4" rx="2" fill="#ff00ff" opacity="0.7"/>
+            </g>
+            <!-- Neural connections -->
+            <line x1="35" y1="340" x2="90" y2="360" stroke="#ff00ff" stroke-width="1" opacity="0.3"/>
+            <line x1="90" y1="360" x2="145" y2="340" stroke="#ff00ff" stroke-width="1" opacity="0.3"/>
+            <line x1="35" y1="340" x2="90" y2="380" stroke="#ff00ff" stroke-width="1" opacity="0.3"/>
+            <line x1="90" y1="380" x2="145" y2="340" stroke="#ff00ff" stroke-width="1" opacity="0.3"/>
+            <circle cx="35" cy="340" r="5" fill="#ff00ff" opacity="0.6" style="animation:decoPulse 1.5s 0s infinite"/>
+            <circle cx="90" cy="360" r="5" fill="#ff00ff" opacity="0.6" style="animation:decoPulse 1.5s 0.3s infinite"/>
+            <circle cx="145" cy="340" r="5" fill="#ff00ff" opacity="0.6" style="animation:decoPulse 1.5s 0.6s infinite"/>
+            <circle cx="90" cy="380" r="5" fill="#ff00ff" opacity="0.6" style="animation:decoPulse 1.5s 0.9s infinite"/>
+        </svg>
+        <div class="game-deco-title">Kółko i Krzyżyk</div>
+    </div>
+<div class="game-left">
+        <h2>⭕ Kółko i Krzyżyk</h2>
+        <div class="status-bar"><span id="ticStatus">Twój ruch (X)</span></div>
+        <div id="ticTacToeBoard"></div>
+        <div class="game-btns"><button class="menu-btn" onclick="resetTic()">↺ Nowa gra</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#080808,#120022,#0d0022);">
+        
+        <div class="sp-section">
+            <div class="sp-label">SERIA</div>
+            <div class="sp-stats">
+                <div class="sp-stat" style="--sc:#00ffff"><span id="ticWins" class="sp-val">0</span><span class="sp-lbl">✖ Wygrane</span></div>
+                <div class="sp-stat" style="--sc:#888"><span id="ticDraws" class="sp-val">0</span><span class="sp-lbl">= Remisy</span></div>
+                <div class="sp-stat" style="--sc:#ff00ff"><span id="ticLosses" class="sp-val">0</span><span class="sp-lbl">⭕ Porażki</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">AI MINIMAX</div>
+            <div class="sp-aibar"><span>Głębokość</span><div class="sp-bar"><div style="width:100%;background:#ff00ff;" class="sp-bar-fill"></div></div></div>
+            <div class="sp-aibar"><span>Siła</span><div class="sp-bar"><div style="width:92%;background:#aa00aa;" class="sp-bar-fill"></div></div></div>
+            <div class="sp-aibar"><span>Trudność</span><div class="sp-bar"><div style="width:97%;background:#cc00cc;" class="sp-bar-fill"></div></div></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">STRATEGIA</div>
+            <div class="sp-obj">🎯 Zacznij od <b>środka</b></div>
+            <div class="sp-obj">⚡ Blokuj AI w porę</div>
+            <div class="sp-obj">🧠 Twórz podwójne zagrożenie</div>
+        </div>
+    </div>
+</div>
+
+<!-- PINGPONG -->
+<div id="pingpong" class="game game-layout" style="--ga:#74b9ff;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Table -->
+            <rect x="20" y="180" width="140" height="90" rx="6" fill="#1a4a7a" stroke="#74b9ff" stroke-width="2"/>
+            <line x1="90" y1="180" x2="90" y2="270" stroke="white" stroke-width="2" opacity="0.5"/>
+            <line x1="20" y1="225" x2="160" y2="225" stroke="white" stroke-width="1.5" opacity="0.3"/>
+            <!-- Net -->
+            <rect x="87" y="174" width="6" height="96" rx="2" fill="white" opacity="0.8"/>
+            <!-- Left paddle -->
+            <rect x="25" y="205" width="10" height="40" rx="5" fill="#74b9ff" style="animation:decoWiggle 1.5s infinite; transform-origin:30px 225px"/>
+            <!-- Right paddle -->
+            <rect x="145" y="210" width="10" height="40" rx="5" fill="#ff00ff"/>
+            <!-- Ball -->
+            <circle cx="90" cy="225" r="8" fill="white" style="animation:decoFloat 1s ease-in-out infinite"/>
+            <!-- Ball glow -->
+            <circle cx="90" cy="225" r="12" fill="white" opacity="0.15" style="animation:decoPulse 1s infinite"/>
+            <!-- Speed lines -->
+            <line x1="55" y1="218" x2="75" y2="222" stroke="white" stroke-width="1.5" opacity="0.4"/>
+            <line x1="55" y1="228" x2="75" y2="228" stroke="white" stroke-width="1.5" opacity="0.3"/>
+            <!-- Scoreboard -->
+            <rect x="50" y="60" width="80" height="60" rx="8" fill="#0d1a2e" stroke="#74b9ff" stroke-width="2"/>
+            <text x="72" y="100" text-anchor="middle" font-size="32" font-weight="900" font-family="monospace" fill="#00ffff" style="animation:decoPulse 2s infinite">3</text>
+            <text x="90" y="100" text-anchor="middle" font-size="20" font-weight="900" font-family="monospace" fill="rgba(255,255,255,0.4)">:</text>
+            <text x="108" y="100" text-anchor="middle" font-size="32" font-weight="900" font-family="monospace" fill="#ff00ff">2</text>
+            <!-- Trophy hint -->
+            <text x="90" y="370" text-anchor="middle" font-size="52" style="animation:decoFloat 2.5s infinite">🏓</text>
+        </svg>
+        <div class="game-deco-title">Ping Pong AI</div>
+    </div>
+<div class="game-left">
+        <h2>🏓 Ping Pong AI</h2>
+        <div class="status-bar">Gracz: <span id="scorePlayer">0</span> | AI: <span id="scoreAi">0</span></div>
+        <canvas id="pongCanvas" width="600" height="400"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#071318,#0f2027,#1a3040);">
+        
+        <div class="sp-section">
+            <div class="sp-label">WYNIK</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0;">
+                <div style="text-align:center;"><div style="font-size:11px;letter-spacing:2px;color:#00ffff;font-weight:700;margin-bottom:3px;">GRACZ</div><div id="pongBigP" style="font-size:58px;font-weight:900;color:#00ffff;text-shadow:0 0 20px #00ffff;line-height:1;">0</div></div>
+                <div style="font-size:36px;color:rgba(255,255,255,0.2);font-weight:900;">:</div>
+                <div style="text-align:center;"><div style="font-size:11px;letter-spacing:2px;color:#ff00ff;font-weight:700;margin-bottom:3px;">AI</div><div id="pongBigA" style="font-size:58px;font-weight:900;color:#ff00ff;text-shadow:0 0 20px #ff00ff;line-height:1;">0</div></div>
+            </div>
+            <div class="sp-progwrap">
+                <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Do wygranej (5 pkt)</div>
+                <div class="sp-track"><div class="sp-fill" id="pongProg" style="background:#74b9ff;width:0%;"></div></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">STEROWANIE</div>
+            <div class="sp-ctrl"><span class="sp-key">🖱️ Mysz</span><span>Góra / Dół paletki</span></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">FIZYKA</div>
+            <div class="sp-obj">⚡ Piłka przyspiesza co odbicie</div>
+            <div class="sp-obj">📐 Krawędź paletki zmienia kąt</div>
+        </div>
+    </div>
+</div>
+
+<!-- SOLITAIRE -->
+<div id="solitaire" class="game game-layout" style="--ga:#2ecc71;background:linear-gradient(135deg,#0f5a25,#083018,#04210c);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Card 1 (back) -->
+            <g style="animation:decoFloat 2.8s 0s infinite">
+                <rect x="20" y="60" width="55" height="78" rx="8" fill="#1a4a2e" stroke="#2ecc71" stroke-width="2"/>
+                <rect x="26" y="66" width="43" height="66" rx="5" fill="#174022" opacity="0.8"/>
+                <line x1="26" y1="66" x2="69" y2="132" stroke="#2ecc71" stroke-width="1" opacity="0.3"/>
+                <line x1="69" y1="66" x2="26" y2="132" stroke="#2ecc71" stroke-width="1" opacity="0.3"/>
+            </g>
+            <!-- Card 2 red -->
+            <g style="animation:decoFloat 2.8s 0.4s infinite">
+                <rect x="55" y="80" width="55" height="78" rx="8" fill="#fff" stroke="#ddd" stroke-width="1"/>
+                <text x="63" y="100" font-size="14" font-weight="bold" fill="#e74c3c">A</text>
+                <text x="83" y="135" text-anchor="middle" font-size="26" fill="#e74c3c">♥</text>
+            </g>
+            <!-- Card 3 black -->
+            <g style="animation:decoFloat 2.8s 0.8s infinite">
+                <rect x="90" y="70" width="55" height="78" rx="8" fill="#fff" stroke="#ddd" stroke-width="1"/>
+                <text x="98" y="90" font-size="14" font-weight="bold" fill="#2c3e50">K</text>
+                <text x="118" y="125" text-anchor="middle" font-size="26" fill="#2c3e50">♠</text>
+            </g>
+            <!-- Scattered cards below -->
+            <g transform="rotate(-15 80 270)" style="animation:decoFloat 3s 0.2s infinite">
+                <rect x="40" y="230" width="45" height="63" rx="6" fill="#fff" stroke="#ddd" stroke-width="1"/>
+                <text x="48" y="248" font-size="12" font-weight="bold" fill="#e74c3c">7</text>
+                <text x="63" y="278" text-anchor="middle" font-size="22" fill="#e74c3c">♦</text>
+            </g>
+            <g transform="rotate(12 110 280)" style="animation:decoFloat 3s 1s infinite">
+                <rect x="95" y="240" width="45" height="63" rx="6" fill="#fff" stroke="#ddd" stroke-width="1"/>
+                <text x="103" y="258" font-size="12" font-weight="bold" fill="#2c3e50">J</text>
+                <text x="118" y="288" text-anchor="middle" font-size="22" fill="#2c3e50">♣</text>
+            </g>
+            <!-- Trophy -->
+            <text x="90" y="390" text-anchor="middle" font-size="42" style="animation:decoPulse 2s infinite">🃏</text>
+        </svg>
+        <div class="game-deco-title">Pasjans</div>
+    </div>
+<div class="game-left">
+        <h2>🃏 Pasjans</h2>
+        <div class="status-bar">Bazy: <span id="solitaireScore">0</span> / 52 | Kliknij kartę by przenieść</div>
+        <canvas id="solitaireCanvas" width="800" height="600"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="resetSolitaire()">↺ Resetuj</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#061a0a,#0c2e12,#041508);">
+        
+        <div class="sp-section">
+            <div class="sp-label">BAZY</div>
+            <div class="sp-suits">
+                <div class="sp-suit"><span style="color:#e74c3c;font-size:20px;">♥</span><div class="sp-sbar"><div id="solB0" class="sp-sfill" style="background:#e74c3c;"></div></div><span id="solC0" class="sp-scnt">0</span></div>
+                <div class="sp-suit"><span style="color:#e74c3c;font-size:20px;">♦</span><div class="sp-sbar"><div id="solB1" class="sp-sfill" style="background:#e74c3c;"></div></div><span id="solC1" class="sp-scnt">0</span></div>
+                <div class="sp-suit"><span style="color:#ecf0f1;font-size:20px;">♠</span><div class="sp-sbar"><div id="solB2" class="sp-sfill" style="background:#bdc3c7;"></div></div><span id="solC2" class="sp-scnt">0</span></div>
+                <div class="sp-suit"><span style="color:#ecf0f1;font-size:20px;">♣</span><div class="sp-sbar"><div id="solB3" class="sp-sfill" style="background:#bdc3c7;"></div></div><span id="solC3" class="sp-scnt">0</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="solStatC" class="sp-val">0</span><span class="sp-lbl">W bazach</span></div>
+                <div class="sp-stat"><span id="solStatL" class="sp-val">52</span><span class="sp-lbl">Pozostało</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">ZASADY</div>
+            <div class="sp-obj">🔴↔⚫ Naprzemian, malejąco</div>
+            <div class="sp-obj">🏰 Baza: As→Król, ten sam kolor</div>
+            <div class="sp-obj">🃏 Kliknij stos by odkryć</div>
+        </div>
+    </div>
+</div>
+
+<!-- TOMUS -->
+<div id="tomus" class="game game-layout" style="--ga:#ff0055;background:linear-gradient(135deg,#4a0e1c,#2a0510,#0a0204);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Syringe big -->
+            <g transform="rotate(-30 90 200)" style="animation:decoFloat 2s infinite; transform-origin:90px 200px">
+                <!-- Barrel -->
+                <rect x="60" y="155" width="60" height="22" rx="4" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1.5"/>
+                <!-- Plunger -->
+                <rect x="55" y="159" width="10" height="14" rx="2" fill="#95a5a6"/>
+                <rect x="50" y="156" width="6" height="20" rx="3" fill="#7f8c8d"/>
+                <!-- Needle -->
+                <rect x="120" y="162" width="30" height="6" rx="3" fill="#bdc3c7"/>
+                <polygon points="150,162 162,165 150,168" fill="#95a5a6"/>
+                <!-- Liquid (red) -->
+                <rect x="68" y="158" width="35" height="18" rx="2" fill="#e74c3c" opacity="0.7"/>
+                <!-- Scale marks -->
+                <line x1="80" y1="155" x2="80" y2="152" stroke="#999" stroke-width="1"/>
+                <line x1="95" y1="155" x2="95" y2="152" stroke="#999" stroke-width="1"/>
+                <line x1="110" y1="155" x2="110" y2="152" stroke="#999" stroke-width="1"/>
+            </g>
+            <!-- Crosshair target -->
+            <circle cx="90" cy="100" r="30" fill="none" stroke="#ff0055" stroke-width="2" opacity="0.6" style="animation:decoPulse 1.5s infinite"/>
+            <circle cx="90" cy="100" r="18" fill="none" stroke="#ff0055" stroke-width="1.5" opacity="0.8"/>
+            <circle cx="90" cy="100" r="5" fill="#ff0055" style="animation:decoPulse 0.8s infinite"/>
+            <line x1="55" y1="100" x2="72" y2="100" stroke="#ff0055" stroke-width="2" opacity="0.7"/>
+            <line x1="108" y1="100" x2="125" y2="100" stroke="#ff0055" stroke-width="2" opacity="0.7"/>
+            <line x1="90" y1="65" x2="90" y2="82" stroke="#ff0055" stroke-width="2" opacity="0.7"/>
+            <line x1="90" y1="118" x2="90" y2="135" stroke="#ff0055" stroke-width="2" opacity="0.7"/>
+            <!-- Tomus silhouette -->
+            <g style="animation:decoWiggle 0.8s infinite; transform-origin:90px 330px">
+                <circle cx="90" cy="305" r="22" fill="#ff0055" opacity="0.8"/>
+                <circle cx="90" cy="305" r="16" fill="#c0392b"/>
+                <text x="90" y="314" text-anchor="middle" font-size="20" fill="white">😱</text>
+            </g>
+            <!-- Timer -->
+            <text x="90" y="395" text-anchor="middle" font-size="13" font-family="monospace" fill="#ff0055" style="animation:decoPulse 1s infinite">10:00</text>
+        </svg>
+        <div class="game-deco-title">Tomuś Strzykawa</div>
+    </div>
+<div class="game-left">
+        <h2>💉 Tomuś Strzykawa</h2>
+        <div class="status-bar">Czas: <span id="tomusTime">10</span>s | Kliknij Tomusia!</div>
+        <canvas id="tomusCanvas" width="600" height="400"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#200508,#3a0a10,#0d0103);">
+        
+        <div class="sp-section">
+            <div class="sp-label">CZAS</div>
+            <div style="text-align:center;padding:8px 0;">
+                <div id="tomusClock" style="font-size:74px;font-weight:900;color:#ff0055;text-shadow:0 0 30px rgba(255,0,85,0.5);line-height:1;">10</div>
+                <div class="sp-track" style="margin-top:12px;"><div class="sp-fill" id="tomusClockBar" style="background:linear-gradient(90deg,#ff0055,#ff6b6b);width:100%;"></div></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat" style="--sc:#ff0055"><span id="tomusSClicks" class="sp-val">0</span><span class="sp-lbl">Kliknięcia</span></div>
+                <div class="sp-stat" style="--sc:#ff6b6b"><span id="tomusSMisses" class="sp-val">0</span><span class="sp-lbl">Pudła</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">OCENA</div>
+            <div class="sp-obj">⭐ 1 klik = Ocena <b>S</b></div>
+            <div class="sp-obj">🎯 2–3 kliki = Ocena <b>A</b></div>
+            <div class="sp-obj">💀 Czas upłynął = <b>C</b></div>
+        </div>
+        <div class="sp-section">
+            <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;margin:0;">Poczekaj aż <span style="color:#ff0055;font-weight:700;">Tomuś się zatrzyma</span> — wtedy klikaj!</p>
+        </div>
+    </div>
+</div>
+
+<!-- KROL_KIBLA -->
+<div id="krol_kibla" class="game game-layout" style="--ga:#f1c40f;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Toilet -->
+            <ellipse cx="90" cy="290" rx="45" ry="20" fill="#ecf0f1"/>
+            <rect x="45" y="270" width="90" height="30" rx="10" fill="#ecf0f1"/>
+            <rect x="50" y="230" width="80" height="50" rx="8" fill="#dfe6e9"/>
+            <ellipse cx="90" cy="230" rx="38" ry="12" fill="#ecf0f1"/>
+            <!-- Water inside -->
+            <ellipse cx="90" cy="232" rx="28" ry="8" fill="#74b9ff" opacity="0.6" style="animation:decoPulse 2s infinite"/>
+            <!-- Tank -->
+            <rect x="58" y="185" width="64" height="48" rx="6" fill="#dfe6e9"/>
+            <rect x="62" y="189" width="56" height="40" rx="4" fill="#b2bec3" opacity="0.5"/>
+            <!-- Crown -->
+            <g transform="translate(90,130)" style="animation:decoFloat 2s infinite; transform-origin:0px 0px">
+                <polygon points="-30,0 -30,-30 -15,-15 0,-35 15,-15 30,-30 30,0" fill="#f1c40f"/>
+                <circle cx="-20" cy="-25" r="5" fill="#e74c3c"/>
+                <circle cx="0" cy="-30" r="5" fill="#3498db"/>
+                <circle cx="20" cy="-25" r="5" fill="#2ecc71"/>
+            </g>
+            <!-- Rolls flying -->
+            <g style="animation:decoFloat 1.5s 0s infinite">
+                <circle cx="30" cy="170" r="14" fill="white" stroke="#ddd" stroke-width="1.5"/>
+                <circle cx="30" cy="170" r="6" fill="#f5f5f5"/>
+                <line x1="30" y1="156" x2="26" y2="140" stroke="#ddd" stroke-width="2"/>
+            </g>
+            <g style="animation:decoFloat 1.5s 0.5s infinite">
+                <circle cx="150" cy="190" r="12" fill="white" stroke="#ddd" stroke-width="1.5"/>
+                <circle cx="150" cy="190" r="5" fill="#f5f5f5"/>
+                <line x1="150" y1="178" x2="155" y2="162" stroke="#ddd" stroke-width="2"/>
+            </g>
+            <!-- Pressure bar -->
+            <rect x="30" y="370" width="120" height="14" rx="7" fill="rgba(255,255,255,0.1)" stroke="#f1c40f" stroke-width="1.5"/>
+            <rect x="30" y="370" width="75" height="14" rx="7" fill="#f1c40f" style="animation:decoPulse 2s infinite"/>
+            <text x="90" y="400" text-anchor="middle" font-size="10" fill="#f1c40f" font-family="Rajdhani,sans-serif" letter-spacing="2">CIŚNIENIE</text>
+        </svg>
+        <div class="game-deco-title">Król Kibla</div>
+    </div>
+<div class="game-left">
+        <h2>👑 Król Kibla</h2>
+        <div class="status-bar">Czas: <span id="kibelTime">0</span>/60s | Ciśnienie: <span id="kibelPressureText">0</span>% | [SPACJA] Ulga | [MYSZ] Rolki/Drzwi</div>
+        <canvas id="kibelCanvas" width="600" height="400"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="resetKibel()">↺ Od nowa</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#0d0d1a,#121228,#0a1830);">
+        
+        <div class="sp-section">
+            <div class="sp-label">CIŚNIENIE</div>
+            <div style="display:flex;gap:12px;height:150px;">
+                <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;">
+                    <div id="kibelPressFill" style="width:100%;height:0%;background:linear-gradient(0deg,#e74c3c,#f39c12 50%,#2ecc71);transition:height 0.5s ease;border-radius:6px;"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;justify-content:space-between;font-size:11px;font-weight:700;padding:2px 0;">
+                    <span style="color:#e74c3c">100%</span>
+                    <span style="color:#f39c12">50%</span>
+                    <span style="color:#2ecc71">0%</span>
+                </div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="kibelSTime" class="sp-val">0</span><span class="sp-lbl">⏱ Sekund</span></div>
+                <div class="sp-stat"><span id="kibelSMax" class="sp-val">0</span><span class="sp-lbl">📈 Maks.%</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">ZAGROŻENIA</div>
+            <div class="sp-obj">💨 Ciśnienie rośnie z czasem</div>
+            <div class="sp-obj">🚪 Kliknij drzwi — wycisz sąsiada</div>
+            <div class="sp-obj">🧻 Kliknij rolki — zanim trafią</div>
+        </div>
+    </div>
+</div>
+
+<!-- WISIELEC -->
+<div id="wisielec" class="game game-layout" style="--ga:#f1c40f;background:linear-gradient(135deg,#1f2224,#2a2d30,#3e4245);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gallows -->
+            <line x1="30" y1="380" x2="150" y2="380" stroke="#8d6e63" stroke-width="5" stroke-linecap="round"/>
+            <line x1="70" y1="380" x2="70" y2="60" stroke="#8d6e63" stroke-width="5" stroke-linecap="round"/>
+            <line x1="70" y1="60" x2="120" y2="60" stroke="#8d6e63" stroke-width="5" stroke-linecap="round"/>
+            <line x1="120" y1="60" x2="120" y2="90" stroke="#8d6e63" stroke-width="3"/>
+            <!-- Hanged figure (partial for deco) -->
+            <circle cx="120" cy="105" r="16" fill="none" stroke="#f1c40f" stroke-width="3" style="animation:decoWiggle 3s infinite; transform-origin:120px 90px"/>
+            <!-- Face -->
+            <circle cx="115" cy="102" r="2.5" fill="#f1c40f"/>
+            <circle cx="125" cy="102" r="2.5" fill="#f1c40f"/>
+            <path d="M114 110 Q120 106 126 110" stroke="#f1c40f" stroke-width="2" fill="none"/>
+            <!-- Body -->
+            <line x1="120" y1="121" x2="120" y2="160" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" style="animation:decoWiggle 3s infinite; transform-origin:120px 90px"/>
+            <line x1="120" y1="135" x2="100" y2="150" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="120" y1="135" x2="140" y2="148" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="120" y1="160" x2="106" y2="180" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="120" y1="160" x2="134" y2="180" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Word blanks -->
+            <line x1="30" y1="240" x2="55" y2="240" stroke="#f1c40f" stroke-width="2.5" opacity="0.8"/>
+            <line x1="62" y1="240" x2="87" y2="240" stroke="#f1c40f" stroke-width="2.5" opacity="0.8"/>
+            <line x1="94" y1="240" x2="119" y2="240" stroke="#f1c40f" stroke-width="2.5" opacity="0.8"/>
+            <line x1="126" y1="240" x2="151" y2="240" stroke="#f1c40f" stroke-width="2.5" opacity="0.8"/>
+            <!-- Letters floating -->
+            <text x="38" y="230" font-size="18" font-weight="bold" fill="#f1c40f" style="animation:decoPulse 2s 0s infinite">S</text>
+            <text x="70" y="230" font-size="18" font-weight="bold" fill="rgba(241,196,15,0.3)">?</text>
+            <text x="100" y="230" font-size="18" font-weight="bold" fill="#f1c40f" style="animation:decoPulse 2s 0.4s infinite">W</text>
+            <text x="132" y="230" font-size="18" font-weight="bold" fill="rgba(241,196,15,0.3)">?</text>
+            <!-- Keyboard hint -->
+            <g transform="translate(22, 270)">
+                <rect width="20" height="18" rx="4" fill="rgba(255,255,255,0.1)" stroke="#f1c40f" stroke-width="1" opacity="0.6"/>
+                <text x="10" y="13" text-anchor="middle" font-size="10" fill="#f1c40f">A</text>
+            </g>
+            <g transform="translate(47, 270)">
+                <rect width="20" height="18" rx="4" fill="rgba(241,196,15,0.3)" stroke="#f1c40f" stroke-width="1"/>
+                <text x="10" y="13" text-anchor="middle" font-size="10" fill="#f1c40f">B</text>
+            </g>
+            <g transform="translate(72, 270)">
+                <rect width="20" height="18" rx="4" fill="rgba(255,255,255,0.1)" stroke="#f1c40f" stroke-width="1" opacity="0.6"/>
+                <text x="10" y="13" text-anchor="middle" font-size="10" fill="#f1c40f">C</text>
+            </g>
+            <g transform="translate(97, 270)">
+                <rect width="20" height="18" rx="4" fill="rgba(231,76,60,0.4)" stroke="#e74c3c" stroke-width="1"/>
+                <text x="10" y="13" text-anchor="middle" font-size="10" fill="#e74c3c">X</text>
+            </g>
+            <g transform="translate(122, 270)">
+                <rect width="20" height="18" rx="4" fill="rgba(255,255,255,0.1)" stroke="#f1c40f" stroke-width="1" opacity="0.6"/>
+                <text x="10" y="13" text-anchor="middle" font-size="10" fill="#f1c40f">Z</text>
+            </g>
+        </svg>
+        <div class="game-deco-title">Wisielec</div>
+    </div>
+<div class="game-left">
+        <h2>😵 Wisielec</h2>
+        
+        
+        <div class="status-bar">Definicja: <span id="hangDefText" style="color:#f1c40f;">Pobieranie...</span><br>Podpowiedź: <span id="hangHintText" style="color:#2ecc71;">Dostępna</span></div>
+        <div class="status-bar" id="hangmanWord" style="letter-spacing:8px;font-weight:bold;color:#00ffff;font-size:28px;min-height:36px;">Pobieranie...</div>
+        <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
+            <canvas id="hangmanCanvas" width="500" height="400" style="background:#0a0a0a;border:2px solid #333;border-radius:8px;flex-shrink:0;margin:0;"></canvas>
+            <div style="flex:1;min-width:260px;">
+                <div id="hangmanKeyboard" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;"></div>
+                <div id="hangmanStatus" style="font-size:22px;color:#ff7675;margin-bottom:12px;">Błędy: 0 / 7</div>
+                <div class="game-btns">
+                    <button class="menu-btn" onclick="getHint()" id="hintBtn">💡 Podpowiedź</button>
+                    <button class="menu-btn" onclick="resetHangman()">↺ Nowe słowo</button>
+                    <button class="menu-btn" onclick="goToMenu()">← Menu</button>
+                </div>
+            </div>
+        </div>
+        <div class="game-btns"></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#111315,#1a1d1f,#202425);">
+        
+        <div class="sp-section">
+            <div class="sp-label">BŁĘDY</div>
+            <div class="sp-hangerrs" id="hangErrIcons">
+                <span class="sp-herr" data-n="1">🪢</span>
+                <span class="sp-herr" data-n="2">👤</span>
+                <span class="sp-herr" data-n="3">💪</span>
+                <span class="sp-herr" data-n="4">💪</span>
+                <span class="sp-herr" data-n="5">🦵</span>
+                <span class="sp-herr" data-n="6">🦵</span>
+                <span class="sp-herr" data-n="7">💀</span>
+            </div>
+            <div class="sp-track" style="margin-top:8px;"><div class="sp-fill" id="hangErrBar" style="background:linear-gradient(90deg,#f39c12,#e74c3c);width:0%;"></div></div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;text-align:center;" id="hangErrTxt">0 / 7</div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="hangSGuessed" class="sp-val">0</span><span class="sp-lbl">Odgadnięte</span></div>
+                <div class="sp-stat"><span id="hangSLeft" class="sp-val">?</span><span class="sp-lbl">Pozostało</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">DEFINICJA</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;margin:0;" id="hangSideDef">Wczytywanie...</p>
+        </div>
+    </div>
+</div>
+
+<!-- BLOCKBUSTER -->
+<div id="blockbuster" class="game game-layout" style="--ga:#f39c12;background:linear-gradient(135deg,#0f0c29,#1a1535,#24243e);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Falling blocks -->
+            <g style="animation:decoFloat 2s 0s infinite">
+                <rect x="55" y="40" width="30" height="30" rx="4" fill="#9b59b6"/>
+                <rect x="85" y="40" width="30" height="30" rx="4" fill="#9b59b6"/>
+                <rect x="55" y="70" width="30" height="30" rx="4" fill="#9b59b6"/>
+                <rect x="58" y="43" width="24" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+                <rect x="88" y="43" width="24" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+                <rect x="58" y="73" width="24" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+            </g>
+            <g style="animation:decoFloat 2s 0.7s infinite">
+                <rect x="100" y="55" width="30" height="30" rx="4" fill="#f39c12"/>
+                <rect x="100" y="85" width="30" height="30" rx="4" fill="#f39c12"/>
+                <rect x="103" y="58" width="24" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+                <rect x="103" y="88" width="24" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+            </g>
+            <g style="animation:decoFloat 2.3s 0.3s infinite">
+                <rect x="30" y="65" width="30" height="30" rx="4" fill="#e74c3c"/>
+                <rect x="33" y="68" width="24" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+            </g>
+            <!-- Grid base -->
+            <rect x="15" y="165" width="150" height="18" rx="3" fill="#2ecc71" style="animation:decoPulse 1.5s 0s infinite"/>
+            <rect x="15" y="187" width="150" height="18" rx="3" fill="#2ecc71" opacity="0.8" style="animation:decoPulse 1.5s 0.2s infinite"/>
+            <!-- Line clear flash -->
+            <rect x="15" y="165" width="150" height="18" rx="3" fill="white" opacity="0" style="animation:decoPulse 0.8s 0.5s infinite"/>
+            <!-- Stacked blocks -->
+            <rect x="15" y="210" width="30" height="30" rx="3" fill="#3498db"/>
+            <rect x="50" y="210" width="30" height="30" rx="3" fill="#e67e22"/>
+            <rect x="85" y="210" width="30" height="30" rx="3" fill="#1abc9c"/>
+            <rect x="120" y="210" width="45" height="30" rx="3" fill="#9b59b6"/>
+            <rect x="15" y="244" width="60" height="30" rx="3" fill="#e74c3c"/>
+            <rect x="80" y="244" width="30" height="30" rx="3" fill="#f1c40f"/>
+            <rect x="115" y="244" width="50" height="30" rx="3" fill="#2ecc71"/>
+            <!-- Score -->
+            <text x="90" y="330" text-anchor="middle" font-size="13" font-family="Rajdhani,sans-serif" letter-spacing="3" fill="#f39c12" opacity="0.8">SCORE</text>
+            <text x="90" y="360" text-anchor="middle" font-size="32" font-weight="900" font-family="monospace" fill="#f39c12" style="animation:decoPulse 2s infinite">1000</text>
+            <!-- Combo text -->
+            <text x="90" y="395" text-anchor="middle" font-size="14" font-weight="bold" fill="white" opacity="0.4" font-family="Rajdhani,sans-serif" letter-spacing="2">COMBO x3</text>
+        </svg>
+        <div class="game-deco-title">Block Buster</div>
+    </div>
+<div class="game-left">
+        <h2>🧩 Block Buster</h2>
+        <div class="status-bar">Wynik: <span id="blockScore">0</span> / 1000</div>
+        <canvas id="blockCanvas" width="400" height="550"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="resetBlockbuster()">↺ Resetuj</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#080618,#100d22,#16142e);">
+        
+        <div class="sp-section">
+            <div class="sp-label">POSTĘP</div>
+            <div class="sp-progwrap">
+                <div class="sp-track" style="height:14px;"><div class="sp-fill" id="bbProg" style="background:linear-gradient(90deg,#9b59b6,#f39c12);width:0%;"></div></div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;"><span>0</span><span id="bbProgPct">0%</span><span>1000</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="bbSScore" class="sp-val">0</span><span class="sp-lbl">Punkty</span></div>
+                <div class="sp-stat"><span id="bbSLines" class="sp-val">0</span><span class="sp-lbl">Linie</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">PUNKTACJA</div>
+            <div class="sp-obj">🟦 Klocek = <b>2 pkt</b></div>
+            <div class="sp-obj">✨ Pełna linia = <b>+50 pkt</b></div>
+            <div class="sp-obj">🚫 Brak ruchu = koniec</div>
+        </div>
+        <div class="sp-section">
+            <p style="font-size:13px;color:rgba(255,255,255,0.42);line-height:1.6;margin:0;">Kasuj wiele linii naraz — <b style="color:#f39c12;">premie się kumulują!</b></p>
+        </div>
+    </div>
+</div>
+
+<!-- WHACK -->
+<div id="whack" class="game game-layout" style="--ga:#f1c40f;background:radial-gradient(ellipse at top,#5e0000,#2b0000 70%);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hammer big animated -->
+            <g style="animation:decoHammer 0.8s ease-in-out infinite; transform-origin:70px 120px">
+                <!-- Handle -->
+                <rect x="60" y="120" width="16" height="70" rx="8" fill="#8B4513"/>
+                <rect x="63" y="122" width="5" height="66" rx="3" fill="#A0522D"/>
+                <!-- Head -->
+                <rect x="35" y="88" width="70" height="35" rx="8" fill="#555"/>
+                <rect x="35" y="88" width="70" height="14" rx="6" fill="#777"/>
+                <rect x="37" y="92" width="20" height="27" rx="4" fill="#888"/>
+                <rect x="37" y="92" width="20" height="10" rx="3" fill="#aaa"/>
+            </g>
+            <!-- Holes (3 circles) -->
+            <circle cx="42" cy="260" r="28" fill="#1a0a00" stroke="#3e2723" stroke-width="4"/>
+            <circle cx="42" cy="260" r="20" fill="#000" opacity="0.9"/>
+            <circle cx="90" cy="260" r="28" fill="#1a0a00" stroke="#3e2723" stroke-width="4"/>
+            <!-- Mole popping up -->
+            <g style="animation:decoFloat 1.2s ease-in-out infinite; transform-origin:90px 248px">
+                <ellipse cx="90" cy="252" rx="16" ry="20" fill="#d4ac0d"/>
+                <ellipse cx="90" cy="244" rx="12" ry="14" fill="#e8c547"/>
+                <circle cx="86" cy="240" r="2.5" fill="#222"/>
+                <circle cx="94" cy="240" r="2.5" fill="#222"/>
+                <ellipse cx="90" cy="247" rx="5" ry="3" fill="#b8860b"/>
+            </g>
+            <circle cx="138" cy="260" r="28" fill="#1a0a00" stroke="#3e2723" stroke-width="4"/>
+            <circle cx="138" cy="260" r="20" fill="#000" opacity="0.9"/>
+            <!-- Stars on hit -->
+            <text x="130" y="190" font-size="20" style="animation:decoPulse 0.6s 0s infinite">⭐</text>
+            <text x="30" y="210" font-size="16" style="animation:decoPulse 0.6s 0.2s infinite">✨</text>
+            <!-- Score counter -->
+            <rect x="50" y="330" width="80" height="40" rx="8" fill="rgba(0,0,0,0.4)" stroke="#f1c40f" stroke-width="2"/>
+            <text x="90" y="358" text-anchor="middle" font-size="26" font-weight="900" font-family="monospace" fill="#f1c40f" style="animation:decoPulse 1s infinite">20</text>
+            <!-- Timer arc small -->
+            <circle cx="90" cy="400" r="16" fill="none" stroke="rgba(241,196,15,0.3)" stroke-width="3"/>
+            <circle cx="90" cy="400" r="16" fill="none" stroke="#f1c40f" stroke-width="3" stroke-dasharray="50 50" stroke-dashoffset="25" transform="rotate(-90 90 400)" style="animation:decoSpinSlow 3s linear infinite"/>
+        </svg>
+        <div class="game-deco-title">Uderz Chińczyka</div>
+    </div>
+<div class="game-left">
+        <h2 style="color:#f1c40f;text-shadow:0 0 15px #f1c40f44;">🔨 Uderz Chińczyka</h2>
+        <div class="status-bar" style="color:#f1c40f;border-color:#f1c40f33;">Punkty: <span id="whackScore">0</span> | Czas: <span id="whackTime">30</span>s</div>
+        <div id="whackGrid" class="whack-grid"></div>
+        <div class="game-btns"><button class="menu-btn" onclick="startWhack()">▶ Start</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:radial-gradient(ellipse at top,#4a0a0a,#2b0000 60%,#1a0000);">
+        
+        <div class="sp-section">
+            <div class="sp-label" style="color:#f1c40f;">WYNIK</div>
+            <div id="whackBigS" style="font-size:74px;font-weight:900;color:#f1c40f;text-shadow:0 0 28px rgba(241,196,15,0.5);line-height:1;text-align:center;">0</div>
+            <div class="sp-progwrap" style="margin-top:8px;">
+                <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Do wygranej (20)</div>
+                <div class="sp-track"><div class="sp-fill" id="whackProg" style="background:#f1c40f;width:0%;"></div></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label" style="color:#f1c40f;">CZAS</div>
+            <div style="display:flex;justify-content:center;">
+            <svg viewBox="0 0 90 90" width="110" height="110">
+                <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="7"/>
+                <circle id="whackArc" cx="45" cy="45" r="36" fill="none" stroke="#f1c40f" stroke-width="7"
+                    stroke-dasharray="226" stroke-dashoffset="0" stroke-linecap="round"
+                    transform="rotate(-90 45 45)" style="transition:stroke-dashoffset 1s linear;"/>
+                <text x="45" y="52" text-anchor="middle" fill="#f1c40f" font-size="20" font-weight="900" font-family="Segoe UI,Arial,sans-serif" id="whackArcTxt">30</text>
+            </svg></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat" style="--sc:#f1c40f"><span id="whackSBest" class="sp-val">0</span><span class="sp-lbl">Rekord</span></div>
+                <div class="sp-stat" style="--sc:#d4ac0d"><span id="whackSGames" class="sp-val">0</span><span class="sp-lbl">Partii</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE -->
+<div id="slide" class="game game-layout" style="--ga:#e74c3c;background:linear-gradient(135deg,#1a0505,#2d1010,#1a1a1a);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- 4x4 puzzle grid -->
+            <g transform="translate(15, 80)">
+                <!-- Row 1 -->
+                <rect x="0" y="0" width="34" height="34" rx="5" fill="#e74c3c"/><text x="17" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="white">1</text>
+                <rect x="38" y="0" width="34" height="34" rx="5" fill="#c0392b"/><text x="55" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="white">2</text>
+                <rect x="76" y="0" width="34" height="34" rx="5" fill="#e74c3c"/><text x="93" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="white">3</text>
+                <rect x="114" y="0" width="34" height="34" rx="5" fill="#c0392b"/><text x="131" y="23" text-anchor="middle" font-size="15" font-weight="bold" fill="white">4</text>
+                <!-- Row 2 -->
+                <rect x="0" y="38" width="34" height="34" rx="5" fill="#c0392b"/><text x="17" y="61" text-anchor="middle" font-size="15" font-weight="bold" fill="white">5</text>
+                <rect x="38" y="38" width="34" height="34" rx="5" fill="#e74c3c"/><text x="55" y="61" text-anchor="middle" font-size="15" font-weight="bold" fill="white">6</text>
+                <rect x="76" y="38" width="34" height="34" rx="5" fill="#c0392b"/><text x="93" y="61" text-anchor="middle" font-size="15" font-weight="bold" fill="white">7</text>
+                <rect x="114" y="38" width="34" height="34" rx="5" fill="#e74c3c" style="animation:decoFloat 1.5s infinite; transform-origin:131px 55px"/><text x="131" y="61" text-anchor="middle" font-size="15" font-weight="bold" fill="white">8</text>
+                <!-- Row 3 -->
+                <rect x="0" y="76" width="34" height="34" rx="5" fill="#e74c3c"/><text x="17" y="99" text-anchor="middle" font-size="15" font-weight="bold" fill="white">9</text>
+                <rect x="38" y="76" width="34" height="34" rx="5" fill="#c0392b"/><text x="55" y="99" text-anchor="middle" font-size="15" font-weight="bold" fill="white">10</text>
+                <rect x="76" y="76" width="34" height="34" rx="5" fill="#e74c3c" style="animation:decoFloat 1.5s 0.3s infinite; transform-origin:93px 93px"/><text x="93" y="99" text-anchor="middle" font-size="15" font-weight="bold" fill="white">11</text>
+                <rect x="114" y="76" width="34" height="34" rx="5" fill="#c0392b"/><text x="131" y="99" text-anchor="middle" font-size="15" font-weight="bold" fill="white">12</text>
+                <!-- Row 4 -->
+                <rect x="0" y="114" width="34" height="34" rx="5" fill="#c0392b"/><text x="17" y="137" text-anchor="middle" font-size="15" font-weight="bold" fill="white">13</text>
+                <rect x="38" y="114" width="34" height="34" rx="5" fill="#e74c3c" style="animation:decoFloat 1.5s 0.6s infinite; transform-origin:55px 131px"/><text x="55" y="137" text-anchor="middle" font-size="15" font-weight="bold" fill="white">14</text>
+                <rect x="76" y="114" width="34" height="34" rx="5" fill="#c0392b"/><text x="93" y="137" text-anchor="middle" font-size="15" font-weight="bold" fill="white">15</text>
+                <!-- Empty tile (animated highlight) -->
+                <rect x="114" y="114" width="34" height="34" rx="5" fill="rgba(231,76,60,0.15)" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5 3" style="animation:decoPulse 1s infinite"/>
+            </g>
+            <!-- Arrow hint -->
+            <text x="90" y="310" text-anchor="middle" font-size="30" style="animation:decoFloat 1.5s infinite">↙</text>
+            <!-- Move counter -->
+            <rect x="40" y="340" width="100" height="45" rx="10" fill="rgba(231,76,60,0.15)" stroke="#e74c3c" stroke-width="1.5"/>
+            <text x="90" y="358" text-anchor="middle" font-size="11" font-family="Rajdhani,sans-serif" letter-spacing="3" fill="#e74c3c" opacity="0.7">RUCHY</text>
+            <text x="90" y="378" text-anchor="middle" font-size="22" font-weight="900" font-family="monospace" fill="#e74c3c">42</text>
+        </svg>
+        <div class="game-deco-title">Slide Puzzle</div>
+    </div>
+<div class="game-left">
+        <h2>🟥 Slide Puzzle</h2>
+        <div class="status-bar">Ułóż kafle 1–15 w kolejności!</div>
+        <div id="slideContainer" style="padding:0;"></div>
+        <div class="game-btns"><button class="menu-btn" onclick="initSlide()">🔀 Losuj</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#0d0303,#180808,#100f0f);">
+        
+        <div class="sp-section">
+            <div class="sp-label">RUCHY</div>
+            <div style="text-align:center;padding:10px 0 6px;">
+                <div id="slideBigM" style="font-size:66px;font-weight:900;color:#e74c3c;text-shadow:0 0 25px rgba(231,76,60,0.4);line-height:1;">0</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin-top:4px;">ruchów</div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">OCENA</div>
+            <div class="sp-obj">🏆 <b>&lt;50</b> ruchów → S</div>
+            <div class="sp-obj">🥈 <b>50–100</b> → A</div>
+            <div class="sp-obj">🥉 <b>&gt;100</b> → B</div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">METODA</div>
+            <div class="sp-obj">1️⃣ Ułóż <b>górny rząd</b></div>
+            <div class="sp-obj">2️⃣ Ułóż <b>lewą kolumnę</b></div>
+            <div class="sp-obj">3️⃣ Rozwiąż siatkę <b>3×3</b></div>
+        </div>
+        <div class="sp-section">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:18px;height:18px;background:linear-gradient(135deg,#27ae60,#2ecc71);border-radius:4px;"></div><span style="font-size:12px;color:rgba(255,255,255,0.45);">Na miejscu</span></div>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:18px;height:18px;background:linear-gradient(135deg,#e74c3c,#c0392b);border-radius:4px;"></div><span style="font-size:12px;color:rgba(255,255,255,0.45);">Do przesunięcia</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FACTORY -->
+<div id="factory" class="game game-layout" style="--ga:#8e44ad;background:linear-gradient(135deg,#1a0d22,#2c1a3e,#1a252f);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Factory building small -->
+            <rect x="50" y="120" width="90" height="130" rx="5" fill="#2e1a3a"/>
+            <!-- Windows -->
+            <rect x="62" y="132" width="18" height="12" rx="2" fill="rgba(255,220,80,0.5)" style="animation:decoPulse 2s 0s infinite"/>
+            <rect x="86" y="132" width="18" height="12" rx="2" fill="rgba(255,220,80,0.5)" style="animation:decoPulse 2s 0.4s infinite"/>
+            <rect x="110" y="132" width="18" height="12" rx="2" fill="rgba(255,220,80,0.5)" style="animation:decoPulse 2s 0.8s infinite"/>
+            <rect x="62" y="152" width="18" height="12" rx="2" fill="rgba(255,220,80,0.3)" style="animation:decoPulse 2s 0.2s infinite"/>
+            <rect x="86" y="152" width="18" height="12" rx="2" fill="rgba(255,220,80,0.5)" style="animation:decoPulse 2s 0.6s infinite"/>
+            <rect x="110" y="152" width="18" height="12" rx="2" fill="rgba(255,220,80,0.3)" style="animation:decoPulse 2s 1s infinite"/>
+            <!-- Sign -->
+            <rect x="58" y="172" width="74" height="22" rx="4" fill="#f39c12"/>
+            <text x="95" y="187" text-anchor="middle" font-size="10" font-weight="bold" fill="#1a0a00">⚙ FABRYKA</text>
+            <!-- Door -->
+            <rect x="82" y="222" width="26" height="28" rx="3" fill="#1a1a2e"/>
+            <!-- Chimneys -->
+            <rect x="65" y="90" width="14" height="34" rx="3" fill="#636e72"/>
+            <rect x="111" y="100" width="12" height="24" rx="3" fill="#636e72"/>
+            <!-- Smoke animated -->
+            <circle cx="72" cy="85" r="6" fill="rgba(150,150,150,0.6)" style="animation:decoFloat 1.5s 0s infinite"/>
+            <circle cx="78" cy="72" r="8" fill="rgba(150,150,150,0.4)" style="animation:decoFloat 1.5s 0.3s infinite"/>
+            <circle cx="117" cy="93" r="5" fill="rgba(150,150,150,0.5)" style="animation:decoFloat 1.5s 0.6s infinite"/>
+            <!-- Squares running on road -->
+            <rect x="0" y="295" width="180" height="30" fill="#2a2a2a"/>
+            <line x1="0" y1="310" x2="180" y2="310" stroke="rgba(255,200,50,0.4)" stroke-width="1.5" stroke-dasharray="15 10"/>
+            <!-- Running squares -->
+            <g style="animation:decoShoot 2s 0s infinite">
+                <rect x="-20" y="275" width="22" height="22" rx="3" fill="#e74c3c"/>
+                <rect x="-18" y="277" width="18" height="7" rx="2" fill="rgba(255,255,255,0.2)"/>
+                <rect x="-16" y="282" width="5" height="5" fill="white"/>
+                <rect x="-9" y="282" width="5" height="5" fill="white"/>
+                <rect x="-14" y="284" width="3" height="3" fill="black"/>
+                <rect x="-7" y="284" width="3" height="3" fill="black"/>
+            </g>
+            <g style="animation:decoShoot 2s 0.7s infinite">
+                <rect x="-20" y="298" width="20" height="20" rx="3" fill="#3498db"/>
+                <rect x="-18" y="300" width="16" height="6" rx="2" fill="rgba(255,255,255,0.2)"/>
+                <rect x="-15" y="305" width="4" height="4" fill="white"/>
+                <rect x="-9" y="305" width="4" height="4" fill="white"/>
+            </g>
+            <!-- Crosshair -->
+            <circle cx="90" cy="370" r="22" fill="none" stroke="#ff3300" stroke-width="2" style="animation:decoPulse 1.5s infinite"/>
+            <circle cx="90" cy="370" r="4" fill="#ff3300" style="animation:decoPulse 0.8s infinite"/>
+            <line x1="64" y1="370" x2="80" y2="370" stroke="#ff3300" stroke-width="2"/>
+            <line x1="100" y1="370" x2="116" y2="370" stroke="#ff3300" stroke-width="2"/>
+            <line x1="90" y1="344" x2="90" y2="360" stroke="#ff3300" stroke-width="2"/>
+            <line x1="90" y1="380" x2="90" y2="396" stroke="#ff3300" stroke-width="2"/>
+        </svg>
+        <div class="game-deco-title">Fabryka</div>
+    </div>
+<div class="game-left">
+        <h2>🏭 Fabryka</h2>
+        <div class="status-bar">Zestrzeleni: <span id="factoryScore">0</span>/30 | Uciekli: <span id="factoryEscaped">0</span>/15</div>
+        <canvas id="factoryCanvas" width="800" height="500"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="resetFactory()">↺ Resetuj</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#0d0814,#180d25,#0f141a);">
+        
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat" style="--sc:#8e44ad"><span id="factSKills" class="sp-val">0</span><span class="sp-lbl">🎯 Zestrzeleni</span></div>
+                <div class="sp-stat" style="--sc:#e74c3c"><span id="factSEsc" class="sp-val">0</span><span class="sp-lbl">🏃 Uciekli</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">POSTĘP</div>
+            <div class="sp-progwrap">
+                <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Cel: 30 zestrzelonych</div>
+                <div class="sp-track"><div class="sp-fill" id="factProg" style="background:linear-gradient(90deg,#6c3483,#8e44ad);width:0%;"></div></div>
+                <div style="text-align:right;font-size:11px;color:rgba(255,255,255,0.35);" id="factProgTxt">0 / 30</div>
+            </div>
+            <div class="sp-progwrap" style="margin-top:10px;">
+                <div style="font-size:11px;color:#e74c3c;margin-bottom:4px;">Limit ucieczek: 15</div>
+                <div class="sp-track"><div class="sp-fill" id="factEscProg" style="background:linear-gradient(90deg,#922b21,#e74c3c);width:0%;"></div></div>
+                <div style="text-align:right;font-size:11px;color:rgba(255,255,255,0.35);" id="factEscTxt">0 / 15</div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">STEROWANIE</div>
+            <div class="sp-ctrl"><span class="sp-key">🔫 Kursor</span><span>Celownik strzelby</span></div>
+            <div class="sp-ctrl"><span class="sp-key">LPM</span><span>Strzał</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- FLAPPY -->
+<div id="flappy" class="game game-layout" style="--ga:#f1c40f;background:linear-gradient(135deg,#1a3a6e,#2d6a9f,#4a90d9);">
+        <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <!-- Sky bg strips -->
+            <rect x="0" y="0" width="180" height="320" fill="rgba(74,144,217,0.15)" rx="8"/>
+            <!-- Pipes top -->
+            <rect x="20" y="0" width="30" height="120" rx="4" fill="#27ae60"/>
+            <rect x="14" y="115" width="42" height="20" rx="6" fill="#2ecc71"/>
+            <!-- Pipes bottom -->
+            <rect x="20" y="190" width="30" height="140" rx="4" fill="#27ae60"/>
+            <rect x="14" y="185" width="42" height="20" rx="6" fill="#2ecc71"/>
+            <!-- Pipes 2 top -->
+            <rect x="115" y="0" width="30" height="90" rx="4" fill="#27ae60"/>
+            <rect x="109" y="85" width="42" height="20" rx="6" fill="#2ecc71"/>
+            <!-- Pipes 2 bottom -->
+            <rect x="115" y="200" width="30" height="130" rx="4" fill="#27ae60"/>
+            <rect x="109" y="195" width="42" height="20" rx="6" fill="#2ecc71"/>
+            <!-- Ground -->
+            <rect x="0" y="320" width="180" height="30" fill="#7ec850"/>
+            <rect x="0" y="320" width="180" height="8" fill="#8dd44e"/>
+            <!-- Bird flying -->
+            <g style="animation:decoBird 0.8s ease-in-out infinite; transform-origin:90px 155px">
+                <!-- Body -->
+                <ellipse cx="90" cy="155" rx="20" ry="15" fill="#f1c40f"/>
+                <!-- Wing -->
+                <ellipse cx="82" cy="152" rx="12" ry="6" fill="#e67e22" style="animation:decoWiggle 0.4s infinite; transform-origin:90px 152px"/>
+                <!-- Eye -->
+                <circle cx="98" cy="150" r="5" fill="white"/>
+                <circle cx="100" cy="150" r="3" fill="#333"/>
+                <circle cx="101" cy="149" r="1" fill="white"/>
+                <!-- Beak -->
+                <polygon points="104,153 114,155 104,158" fill="#e67e22"/>
+            </g>
+            <!-- Score display -->
+            <rect x="55" y="355" width="70" height="50" rx="10" fill="rgba(0,0,0,0.3)" stroke="#f1c40f" stroke-width="1.5"/>
+            <text x="90" y="372" text-anchor="middle" font-size="10" font-family="Rajdhani,sans-serif" letter-spacing="3" fill="#f1c40f" opacity="0.6">WYNIK</text>
+            <text x="90" y="396" text-anchor="middle" font-size="30" font-weight="900" font-family="monospace" fill="#f1c40f" style="animation:decoPulse 1.5s infinite">7</text>
+        </svg>
+        <div class="game-deco-title">Flappy Bird</div>
+    </div>
+<div class="game-left">
+        <h2>🐦 Flappy Bird</h2>
+        <div class="status-bar">Wynik: <span id="flappyScoreText">0</span> / 15 | [SPACJA] lub klik = Skok</div>
+        <canvas id="flappyCanvas" width="400" height="500"></canvas>
+        <div class="game-btns"><button class="menu-btn" onclick="resetFlappy()">↺ Resetuj</button><button class="menu-btn" onclick="goToMenu()">← Menu</button></div>
+    </div>
+    <div class="game-side" style="background:linear-gradient(160deg,#0d1f3a,#162d52,#1a3a6e);">
+        
+        <div class="sp-section">
+            <div class="sp-label">WYNIK</div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:8px;margin:8px 0;">
+                <div id="flappyBigS" style="font-size:70px;font-weight:900;color:#f1c40f;text-shadow:0 0 28px rgba(241,196,15,0.5);line-height:1;">0</div>
+                <div style="font-size:20px;color:rgba(255,255,255,0.3);font-weight:700;">/ 15</div>
+            </div>
+            <div class="sp-track"><div class="sp-fill" id="flappyProg" style="background:linear-gradient(90deg,#27ae60,#f1c40f);width:0%;"></div></div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat" style="--sc:#f1c40f"><span id="flappySBest" class="sp-val">0</span><span class="sp-lbl">Rekord</span></div>
+                <div class="sp-stat" style="--sc:#27ae60"><span id="flappySGames" class="sp-val">0</span><span class="sp-lbl">Prób</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">STEROWANIE</div>
+            <div class="sp-ctrl"><span class="sp-key">SPACJA</span><span>Skok</span></div>
+            <div class="sp-ctrl"><span class="sp-key">🖱️ Klik</span><span>Skok</span></div>
+        </div>
+        <div class="sp-section">
+            <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin:0;"><b style="color:#f1c40f;">Małe rytmiczne kliknięcia</b> działają lepiej. Trzymaj ptaka pośrodku!</p>
+        </div>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
+<!-- QUIZ -->
+<div id="quiz" class="game game-layout" style="--ga:#f39c12;background:linear-gradient(135deg,#0a0500,#1a0e00,#2a1800);">
+    <div class="game-deco">
+        <svg viewBox="0 0 180 420" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="60" r="35" fill="#f39c12" opacity="0.15" style="animation:decoPulse 2s infinite"/>
+            <text x="90" y="75" text-anchor="middle" font-size="44">🧠</text>
+            <rect x="20" y="115" width="140" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+            <rect x="20" y="115" width="100" height="6" rx="3" fill="#f39c12" style="animation:decoPulse 2s infinite"/>
+            <g style="animation:decoFloat 2s 0s infinite">
+                <rect x="30" y="145" width="120" height="44" rx="10" fill="rgba(243,156,18,0.12)" stroke="#f39c12" stroke-width="1.5"/>
+                <text x="90" y="160" text-anchor="middle" font-size="10" fill="#f39c12" font-family="Rajdhani,sans-serif" letter-spacing="2">PYTANIE</text>
+                <text x="90" y="180" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.6)" font-family="sans-serif">Jaka jest stolica...?</text>
+            </g>
+            <g style="animation:decoFloat 2.2s 0.3s infinite">
+                <rect x="30" y="205" width="55" height="32" rx="8" fill="rgba(46,204,113,0.2)" stroke="#2ecc71" stroke-width="1.5"/>
+                <text x="57" y="226" text-anchor="middle" font-size="11" fill="#2ecc71">✓ Paryż</text>
+            </g>
+            <g style="animation:decoFloat 2.2s 0.6s infinite">
+                <rect x="95" y="205" width="55" height="32" rx="8" fill="rgba(231,76,60,0.15)" stroke="#e74c3c" stroke-width="1.5"/>
+                <text x="122" y="226" text-anchor="middle" font-size="11" fill="#e74c3c">✗ Berlin</text>
+            </g>
+            <!-- Progress ladder -->
+            <text x="90" y="275" text-anchor="middle" font-size="11" font-family="Rajdhani,sans-serif" letter-spacing="3" fill="rgba(255,255,255,0.3)">POSTĘP</text>
+            <rect x="30" y="282" width="120" height="12" rx="6" fill="rgba(255,255,255,0.08)"/>
+            <rect x="30" y="282" width="80" height="12" rx="6" fill="linear-gradient(90deg,#f39c12,#e67e22)"/>
+            <!-- Avatar on bar -->
+            <text x="110" y="281" font-size="16" style="animation:decoFloat 1s infinite">😎</text>
+            <!-- Category badges -->
+            <text x="35" y="330" font-size="22" style="animation:decoPulse 1.8s 0s infinite">🌍</text>
+            <text x="70" y="330" font-size="22" style="animation:decoPulse 1.8s 0.3s infinite">⚗️</text>
+            <text x="105" y="330" font-size="22" style="animation:decoPulse 1.8s 0.6s infinite">🎬</text>
+            <text x="140" y="330" font-size="22" style="animation:decoPulse 1.8s 0.9s infinite">⚽</text>
+            <text x="35" y="365" font-size="22" style="animation:decoPulse 1.8s 0.2s infinite">🎵</text>
+            <text x="70" y="365" font-size="22" style="animation:decoPulse 1.8s 0.5s infinite">🧪</text>
+            <text x="105" y="365" font-size="22" style="animation:decoPulse 1.8s 0.8s infinite">🏛️</text>
+            <text x="140" y="365" font-size="22" style="animation:decoPulse 1.8s 1.1s infinite">💻</text>
+        </svg>
+        <div class="game-deco-title">Quiz</div>
+    </div>
+    <div class="game-left">
+        <h2>🧠 Quiz</h2>
+
+        <!-- Wybór kategorii -->
+        <div id="quizCategoryScreen" style="display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:620px;">
+            <p style="color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0;">Wybierz kategorię</p>
+            <div id="quizCatGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;"></div>
+            <button class="menu-btn" onclick="startQuizCategory('mix')" style="margin-top:6px;background:linear-gradient(135deg,#f39c12,#e67e22);border:none;font-size:16px;padding:14px 40px;">🎲 Mix wszystkiego</button>
+            <button class="menu-btn" onclick="goToMenu()" style="margin-top:4px;">← Menu</button>
+        </div>
+
+        <!-- Główny ekran gry -->
+        <div id="quizGameScreen" style="display:none;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:640px;">
+
+            <!-- Progress bar z awatarem -->
+            <div style="width:100%;position:relative;height:48px;margin-bottom:4px;">
+                <div style="position:absolute;top:50%;left:0;right:0;height:14px;transform:translateY(-50%);background:rgba(255,255,255,0.08);border-radius:7px;overflow:visible;">
+                    <div id="quizProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,#f39c12,#ff6b35);border-radius:7px;transition:width 0.5s cubic-bezier(.68,-0.55,.27,1.55);"></div>
+                </div>
+                <div id="quizAvatar" style="position:absolute;top:50%;transform:translate(-50%,-50%);font-size:28px;transition:left 0.5s cubic-bezier(.68,-0.55,.27,1.55);left:0%;filter:drop-shadow(0 0 8px #f39c12);">😎</div>
+                <!-- Steps markers -->
+                <div id="quizStepMarkers" style="position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 4px;pointer-events:none;"></div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;width:100%;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:1px;">
+                <span id="quizCatLabel">KATEGORIA</span>
+                <span id="quizStepLabel">Krok 0 / 10</span>
+            </div>
+
+            <!-- Karta pytania -->
+            <div id="quizCard" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(243,156,18,0.25);border-radius:16px;padding:24px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;">
+                <p id="quizQuestion" style="margin:0;font-size:18px;line-height:1.5;color:white;font-weight:600;"></p>
+            </div>
+
+            <!-- Odpowiedzi -->
+            <div id="quizAnswers" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;"></div>
+
+            <!-- Feedback -->
+            <div id="quizFeedback" style="display:none;padding:12px 20px;border-radius:10px;font-weight:700;font-size:15px;text-align:center;width:100%;box-sizing:border-box;"></div>
+
+            <div style="display:flex;gap:10px;">
+                <button class="menu-btn" id="quizNextBtn" onclick="quizNext()" style="display:none;">Następne →</button>
+                <button class="menu-btn" onclick="goToMenu()">← Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-side" style="background:linear-gradient(160deg,#110800,#1a1000,#221800);">
+        <div class="sp-section">
+            <div class="sp-label">WYNIK</div>
+            <div style="font-size:44px;font-weight:900;font-family:monospace;color:#f39c12;text-align:center;" id="quizScore">0</div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-stats">
+                <div class="sp-stat"><span id="quizCorrect" class="sp-val" style="color:#2ecc71">0</span><span class="sp-lbl">Dobrze</span></div>
+                <div class="sp-stat"><span id="quizWrong" class="sp-val" style="color:#e74c3c">0</span><span class="sp-lbl">Źle</span></div>
+            </div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">SERIA</div>
+            <div style="font-size:28px;font-weight:900;font-family:monospace;color:#f1c40f;text-align:center;" id="quizStreak">🔥 0</div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">KATEGORIA</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.4);text-align:center;line-height:1.5;" id="quizSideCat">—</div>
+        </div>
+        <div class="sp-section">
+            <div class="sp-label">NAJDŁUŻSZA SERIA</div>
+            <div style="font-size:22px;font-weight:900;font-family:monospace;color:#e67e22;text-align:center;" id="quizBestStreak">0</div>
+        </div>
+    </div>
+</div>
