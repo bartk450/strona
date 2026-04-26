@@ -10,59 +10,8 @@ const CORS_HEADERS = {
     'Content-Type': 'application/json',
 };
 
-// ── Inicjalizacja tabeli i seed danych ─────────────────────
-async function ensureTable(db) {
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS words (
-            id       INTEGER PRIMARY KEY AUTOINCREMENT,
-            word     TEXT    NOT NULL COLLATE NOCASE,
-            hint     TEXT    DEFAULT '',
-            def      TEXT    DEFAULT '',
-            category TEXT    DEFAULT 'ogólne',
-            created  INTEGER DEFAULT (unixepoch())
-        );
-    `);
+// Tabela 'words' utworzona ręcznie przez D1 Console
 
-    const { results } = await db.prepare('SELECT COUNT(*) as n FROM words').all();
-    if (results[0].n > 0) return; // już są słowa
-
-    // Seed — 30 słów startowych
-    await db.exec(`
-        INSERT INTO words (word, hint, def, category) VALUES
-        ('algorytm',     'Informatyka',      'Zbiór kroków do rozwiązania problemu',                    'it'),
-        ('fotosynteza',  'Biologia',         'Proces wytwarzania glukozy przez rośliny ze światła',     'biologia'),
-        ('ewolucja',     'Biologia',         'Zmiana cech organizmów przez kolejne pokolenia',          'biologia'),
-        ('kryptografia', 'Bezpieczeństwo',   'Nauka o szyfrowaniu i ochronie informacji',               'it'),
-        ('meteorologia', 'Nauka o pogodzie', 'Dział fizyki atmosfery badający zjawiska pogodowe',       'nauka'),
-        ('architektura', 'Sztuka',           'Sztuka i nauka projektowania i wznoszenia budowli',       'kultura'),
-        ('antropologia', 'Nauka',            'Nauka badająca człowieka, jego kulturę i ewolucję',       'nauka'),
-        ('magnetyzm',    'Fizyka',           'Właściwość przyciągania materiałów ferromagnetycznych',   'nauka'),
-        ('demokracja',   'Polityka',         'System rządów oparty na woli większości obywateli',       'historia'),
-        ('astronomia',   'Nauka',            'Nauka badająca ciała niebieskie i Wszechświat',           'nauka'),
-        ('chromosom',    'Biologia',         'Struktura w jądrze komórkowym niosąca geny',              'biologia'),
-        ('javascript',   'IT',               'Popularny język skryptowy używany w przeglądarkach',      'it'),
-        ('klimatologia', 'Nauka o klimacie', 'Nauka badająca długoterminowe wzorce pogodowe',           'nauka'),
-        ('renesans',     'Historia sztuki',  'Europejski ruch kulturalny XIV–XVII wieku',               'historia'),
-        ('izotop',       'Chemia',           'Atom tego samego pierwiastka z różną liczbą neutronów',  'nauka'),
-        ('katalizator',  'Chemia',           'Substancja przyspieszająca reakcję bez zużywania się',    'nauka'),
-        ('parlament',    'Polityka',         'Ciało ustawodawcze wybierane przez obywateli',            'historia'),
-        ('symbioza',     'Biologia',         'Wzajemnie korzystna relacja między organizmami',          'biologia'),
-        ('grawitacja',   'Fizyka',           'Siła przyciągania między masami',                        'nauka'),
-        ('logarytm',     'Matematyka',       'Odwrotność potęgowania',                                  'nauka'),
-        ('paradoks',     'Filozofia',        'Twierdzenie prowadzące do sprzecznego wniosku',           'kultura'),
-        ('propaganda',   'Historia',         'Celowe kształtowanie opinii publicznej',                  'historia'),
-        ('urbanizacja',  'Geografia',        'Proces wzrostu liczby ludności w miastach',              'nauka'),
-        ('hologram',     'Fizyka',           'Trójwymiarowy obraz stworzony za pomocą lasera',          'nauka'),
-        ('polimer',      'Chemia',           'Makrocząsteczka złożona z powtarzających się jednostek',  'nauka'),
-        ('fotografia',   'Sztuka',           'Technika utrwalania obrazów za pomocą światła',           'kultura'),
-        ('demokracja',   'Ustrój',           'System oparty na suwerenności narodu',                    'historia'),
-        ('ekosystem',    'Biologia',         'Zespół organizmów żywych i ich środowisko',               'biologia'),
-        ('inflacja',     'Ekonomia',         'Wzrost ogólnego poziomu cen w gospodarce',               'ekonomia'),
-        ('migracja',     'Socjologia',       'Przemieszczanie się ludności między regionami',           'historia');
-    `);
-}
-
-// ── Handler API /api/words ─────────────────────────────────
 async function handleApi(request, env) {
     const url    = new URL(request.url);
     const method = request.method.toUpperCase();
@@ -82,12 +31,6 @@ async function handleApi(request, env) {
         return new Response(JSON.stringify({
             error: 'Baza D1 nie jest podpięta. Dodaj binding "DB" w zakładce Bindings workera.'
         }), { status: 500, headers: CORS_HEADERS });
-    }
-
-    try {
-        await ensureTable(env.DB);
-    } catch (e) {
-        return new Response(JSON.stringify({ error: 'Błąd bazy: ' + e.message }), { status: 500, headers: CORS_HEADERS });
     }
 
     // ── GET ──────────────────────────────────────────────────
