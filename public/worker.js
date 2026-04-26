@@ -10,56 +10,49 @@ const CORS_HEADERS = {
     'Content-Type': 'application/json',
 };
 
-// ── Inicjalizacja tabeli i seed danych ─────────────────────
 async function ensureTable(db) {
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS words (
-            id       INTEGER PRIMARY KEY AUTOINCREMENT,
-            word     TEXT    NOT NULL COLLATE NOCASE,
-            hint     TEXT    DEFAULT '',
-            def      TEXT    DEFAULT '',
-            category TEXT    DEFAULT 'ogólne',
-            created  INTEGER DEFAULT (unixepoch())
-        );
-    `);
+    await db.prepare("CREATE TABLE IF NOT EXISTS words (id INTEGER PRIMARY KEY AUTOINCREMENT, word TEXT NOT NULL COLLATE NOCASE, hint TEXT DEFAULT '', def TEXT DEFAULT '', category TEXT DEFAULT 'ogolne', created INTEGER DEFAULT (unixepoch()))").run();
 
     const { results } = await db.prepare('SELECT COUNT(*) as n FROM words').all();
-    if (results[0].n > 0) return; // już są słowa
+    if (results[0].n > 0) return;
 
-    // Seed — 30 słów startowych
-    await db.exec(`
-        INSERT INTO words (word, hint, def, category) VALUES
-        ('algorytm',     'Informatyka',      'Zbiór kroków do rozwiązania problemu',                    'it'),
-        ('fotosynteza',  'Biologia',         'Proces wytwarzania glukozy przez rośliny ze światła',     'biologia'),
-        ('ewolucja',     'Biologia',         'Zmiana cech organizmów przez kolejne pokolenia',          'biologia'),
-        ('kryptografia', 'Bezpieczeństwo',   'Nauka o szyfrowaniu i ochronie informacji',               'it'),
-        ('meteorologia', 'Nauka o pogodzie', 'Dział fizyki atmosfery badający zjawiska pogodowe',       'nauka'),
-        ('architektura', 'Sztuka',           'Sztuka i nauka projektowania i wznoszenia budowli',       'kultura'),
-        ('antropologia', 'Nauka',            'Nauka badająca człowieka, jego kulturę i ewolucję',       'nauka'),
-        ('magnetyzm',    'Fizyka',           'Właściwość przyciągania materiałów ferromagnetycznych',   'nauka'),
-        ('demokracja',   'Polityka',         'System rządów oparty na woli większości obywateli',       'historia'),
-        ('astronomia',   'Nauka',            'Nauka badająca ciała niebieskie i Wszechświat',           'nauka'),
-        ('chromosom',    'Biologia',         'Struktura w jądrze komórkowym niosąca geny',              'biologia'),
-        ('javascript',   'IT',               'Popularny język skryptowy używany w przeglądarkach',      'it'),
-        ('klimatologia', 'Nauka o klimacie', 'Nauka badająca długoterminowe wzorce pogodowe',           'nauka'),
-        ('renesans',     'Historia sztuki',  'Europejski ruch kulturalny XIV–XVII wieku',               'historia'),
-        ('izotop',       'Chemia',           'Atom tego samego pierwiastka z różną liczbą neutronów',  'nauka'),
-        ('katalizator',  'Chemia',           'Substancja przyspieszająca reakcję bez zużywania się',    'nauka'),
-        ('parlament',    'Polityka',         'Ciało ustawodawcze wybierane przez obywateli',            'historia'),
-        ('symbioza',     'Biologia',         'Wzajemnie korzystna relacja między organizmami',          'biologia'),
-        ('grawitacja',   'Fizyka',           'Siła przyciągania między masami',                        'nauka'),
-        ('logarytm',     'Matematyka',       'Odwrotność potęgowania',                                  'nauka'),
-        ('paradoks',     'Filozofia',        'Twierdzenie prowadzące do sprzecznego wniosku',           'kultura'),
-        ('propaganda',   'Historia',         'Celowe kształtowanie opinii publicznej',                  'historia'),
-        ('urbanizacja',  'Geografia',        'Proces wzrostu liczby ludności w miastach',              'nauka'),
-        ('hologram',     'Fizyka',           'Trójwymiarowy obraz stworzony za pomocą lasera',          'nauka'),
-        ('polimer',      'Chemia',           'Makrocząsteczka złożona z powtarzających się jednostek',  'nauka'),
-        ('fotografia',   'Sztuka',           'Technika utrwalania obrazów za pomocą światła',           'kultura'),
-        ('demokracja',   'Ustrój',           'System oparty na suwerenności narodu',                    'historia'),
-        ('ekosystem',    'Biologia',         'Zespół organizmów żywych i ich środowisko',               'biologia'),
-        ('inflacja',     'Ekonomia',         'Wzrost ogólnego poziomu cen w gospodarce',               'ekonomia'),
-        ('migracja',     'Socjologia',       'Przemieszczanie się ludności między regionami',           'historia');
-    `);
+    const rows = [
+        ['algorytm','Informatyka','Zbior krokow do rozwiazania problemu','it'],
+        ['fotosynteza','Biologia','Proces wytwarzania glukozy przez rosliny','biologia'],
+        ['ewolucja','Biologia','Zmiana cech organizmow przez kolejne pokolenia','biologia'],
+        ['kryptografia','Bezpieczenstwo','Nauka o szyfrowaniu informacji','it'],
+        ['meteorologia','Pogoda','Dzial fizyki atmosfery','nauka'],
+        ['architektura','Sztuka','Sztuka projektowania budowli','kultura'],
+        ['antropologia','Nauka','Nauka badajaca czlowieka','nauka'],
+        ['magnetyzm','Fizyka','Wlasciwosc przyciagania ferromagnetykow','nauka'],
+        ['demokracja','Polityka','System rzadow woli wiekszosci','historia'],
+        ['astronomia','Nauka','Nauka o cialach niebieskich','nauka'],
+        ['chromosom','Biologia','Struktura niosaca geny','biologia'],
+        ['javascript','IT','Jezyk skryptowy przegladarek','it'],
+        ['klimatologia','Klimat','Nauka o wzorcach pogodowych','nauka'],
+        ['renesans','Historia','Ruch kulturalny XIV-XVII w','historia'],
+        ['izotop','Chemia','Atom z rozna liczba neutronow','nauka'],
+        ['katalizator','Chemia','Substancja przyspieszajaca reakcje','nauka'],
+        ['parlament','Polityka','Cialo ustawodawcze','historia'],
+        ['symbioza','Biologia','Korzystna relacja miedzy organizmami','biologia'],
+        ['grawitacja','Fizyka','Sila przyciagania mas','nauka'],
+        ['logarytm','Matematyka','Odwrotnosc potegowania','nauka'],
+        ['paradoks','Filozofia','Twierdzenie sprzeczne','kultura'],
+        ['propaganda','Historia','Ksztaltowanie opinii publicznej','historia'],
+        ['urbanizacja','Geografia','Wzrost ludnosci miejskiej','nauka'],
+        ['hologram','Fizyka','Obraz 3D z lasera','nauka'],
+        ['polimer','Chemia','Makroczasteczka z jednostek','nauka'],
+        ['fotografia','Sztuka','Utrwalanie obrazow swiatlem','kultura'],
+        ['ekosystem','Biologia','Organizmy i ich srodowisko','biologia'],
+        ['inflacja','Ekonomia','Wzrost poziomu cen','ekonomia'],
+        ['migracja','Socjologia','Przemieszczanie sie ludnosci','historia'],
+        ['program','IT','Zestaw instrukcji dla komputera','it'],
+    ];
+
+    const stmt = db.prepare("INSERT INTO words (word, hint, def, category) VALUES (?, ?, ?, ?)");
+    for (const [word, hint, def, category] of rows) {
+        await stmt.bind(word, hint, def, category).run();
+    }
 }
 
 // ── Handler API /api/words ─────────────────────────────────
