@@ -58,7 +58,22 @@ async function handleApi(request, env) {
             return new Response(JSON.stringify({ words: results, count: results.length }), { headers: CORS_HEADERS });
         }
 
-        if (action === 'categories') {
+        if (action === 'quiz') {
+            const count = parseInt(url.searchParams.get('count') || '10');
+            const cat = url.searchParams.get('cat') || '';
+            const q = cat
+                ? 'SELECT question, answer, wrong1, wrong2, wrong3, category FROM quiz_questions WHERE category=? ORDER BY RANDOM() LIMIT ?'
+                : 'SELECT question, answer, wrong1, wrong2, wrong3, category FROM quiz_questions ORDER BY RANDOM() LIMIT ?';
+            const params = cat ? [cat, count] : [count];
+            try {
+                const { results } = await env.DB.prepare(q).bind(...params).all();
+                return new Response(JSON.stringify({ questions: results, count: results.length }), { headers: CORS_HEADERS });
+            } catch(e) {
+                return new Response(JSON.stringify({ questions: [], count: 0, error: e.message }), { headers: CORS_HEADERS });
+            }
+        }
+
+
             const { results } = await env.DB.prepare('SELECT DISTINCT category FROM words ORDER BY category').all();
             return new Response(JSON.stringify({ categories: results.map(r => r.category) }), { headers: CORS_HEADERS });
         }
