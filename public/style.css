@@ -797,3 +797,14 @@ button.menu-btn:hover {
 @media (max-width: 900px) {
     .game-deco { display: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   STACKER
+═══════════════════════════════════════════════════════════ */
+#stacker canvas {
+    cursor: pointer;
+    image-rendering: pixelated;
+}
+#stacker canvas:active {
+    transform: scale(0.99);
+}
