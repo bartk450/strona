@@ -72,8 +72,7 @@ async function handleApi(request, env) {
                 return new Response(JSON.stringify({ questions: [], count: 0, error: e.message }), { headers: CORS_HEADERS });
             }
         }
-
-
+        if (action === 'categories') {
             const { results } = await env.DB.prepare('SELECT DISTINCT category FROM words ORDER BY category').all();
             return new Response(JSON.stringify({ categories: results.map(r => r.category) }), { headers: CORS_HEADERS });
         }
