@@ -3,7 +3,7 @@ let gameLoopId;
 // ==========================================
 // SYSTEM POSTĘPÓW
 // ==========================================
-const TOTAL_GAMES_TO_WIN = 15;
+const TOTAL_GAMES_TO_WIN = 13;
 let completedGames = new Set(); 
 
 function markGameWon(gameId) {
@@ -14,10 +14,12 @@ function markGameWon(gameId) {
         if (block) block.classList.add('won');
         
         const n = completedGames.size;
-        const gwt = document.getElementById('gamesWonText');
+        const gwt  = document.getElementById('gamesWonText');
         const gwt2 = document.getElementById('gamesWonText2');
-        if (gwt) gwt.textContent = n;
+        const hwc  = document.getElementById('headerWonCount');
+        if (gwt)  gwt.textContent  = n;
         if (gwt2) gwt2.textContent = n;
+        if (hwc)  hwc.textContent  = n;
         
         // Update progress bar pill
         const pillFill = document.getElementById('pillFill');
@@ -275,23 +277,6 @@ const GAME_INTROS = {
         ],
         tip: 'Odpowiedz dobrze na 10 pytań z rzędu — to cel!'
     },
-    stacker: {
-        emoji: '🧱',
-        title: 'Stacker',
-        subtitle: 'Zatrzymaj blok w odpowiednim momencie i zbuduj wieżę',
-        color1: '#000d0a',
-        color2: '#002a1e',
-        accent: '#00ffcc',
-        accentGlow: 'rgba(0,255,204,0.3)',
-        border: '#00ffcc',
-        howToPlay: [
-            { icon: '⬅️', text: 'Blok porusza się automatycznie w lewo i prawo' },
-            { icon: '🖱️', text: 'Kliknij, dotknij lub naciśnij SPACJĘ aby zatrzymać blok' },
-            { icon: '🎯', text: 'Blok musi trafić na poprzedni — tylko wspólne kolumny zostają' },
-            { icon: '📐', text: 'Im dokładniej trafisz tym szerszy blok w następnym rzędzie' },
-        ],
-        tip: 'Perfekcyjne trafienie = bonus +50 pkt i pełna szerokość!'
-    },
 };
 
 function showIntroCard(gameId) {
@@ -437,7 +422,6 @@ const GAME_OUTROS = {
     factory: { emoji: '🏭', grade: 'S', gradeColor: '#8e44ad', title: 'Nieomylny Strzelec', quote: 'Nikt nie uciekł z zasięgu Twojej strzelby.' },
     flappy: { emoji: '🐦', grade: 'S', gradeColor: '#f1c40f', title: 'Mistrz Przestworzy', quote: 'Piętnaście rur i ani jednego zderzenia. Legenda.' },
     quiz:   { emoji: '🧠', grade: 'S', gradeColor: '#f39c12', title: 'Mistrz Wiedzy', quote: 'Dziesięć pytań, dziesięć poprawnych odpowiedzi. Niesamowite.' },
-    stacker: { emoji: '🧱', grade: 'S', gradeColor: '#00ffcc', title: 'Architekt Wieży', quote: 'Każdy blok idealnie ułożony. Wieża sięga nieba.' },
 };
 
 function showOutroCard(gameId, customTitle, customQuote, customGrade, isWin) {
@@ -644,7 +628,6 @@ function actuallyStartGame(id) {
     else if(id === 'factory') { resetFactory(); factoryLoop(); } 
     else if(id === 'flappy') { resetFlappy(); flappyLoop(); }
     else if(id === 'quiz') { initQuizCategoryScreen(); document.getElementById('quizCategoryScreen').style.display='flex'; document.getElementById('quizGameScreen').style.display='none'; }
-    else if(id === 'stacker') { resetStacker(); initStackerEvents(); }
 }
 
 function goToMenu() {
@@ -4295,365 +4278,3 @@ async function fetchHangmanWord() {
 }
 
 // Wisielec pobiera słowa z /api/words (D1) — patrz funkcja resetHangman powyżej
-
-// ==========================================
-// STACKER
-// ==========================================
-const STACKER_COLS   = 7;   // szerokość planszy w klockach
-const STACKER_ROWS   = 14;  // wysokość planszy w klockach
-const STACKER_CELL   = 40;  // px na klockek (canvas 280x560)
-
-let stackerState = {
-    running: false,
-    over: false,
-    board: [],          // STACKER_ROWS x STACKER_COLS — true = zajęte
-    blockW: 4,          // szerokość ruchomego bloku
-    blockX: 0,          // pozycja X (kolumna) ruchomego bloku
-    blockRow: 0,        // wiersz na którym leży szczyt stosu (bieżący rząd od góry)
-    dir: 1,             // kierunek ruchu: 1=prawo, -1=lewo
-    speed: 350,         // ms na tick (maleje z każdym poziomem)
-    score: 0,
-    level: 1,
-    combo: 0,
-    highScore: 0,
-    tickTimer: null,
-    flashTimer: null,
-    flashRow: -1,
-    flashAlpha: 0,
-    perfect: false,     // czy ostatnie zatrzymanie było perfekcyjne
-};
-
-function stackerCanvas() { return document.getElementById('stackerCanvas'); }
-function stackerCtx()    { return stackerCanvas()?.getContext('2d'); }
-
-// --- Inicjalizacja ---
-function resetStacker() {
-    const st = stackerState;
-    if (st.tickTimer) clearInterval(st.tickTimer);
-    st.board = Array.from({length: STACKER_ROWS}, () => Array(STACKER_COLS).fill(false));
-    st.blockW   = 4;
-    st.blockX   = 0;
-    st.blockRow = STACKER_ROWS - 1;  // zaczynamy od dołu
-    st.dir      = 1;
-    st.speed    = 380;
-    st.score    = 0;
-    st.level    = 1;
-    st.combo    = 0;
-    st.over     = false;
-    st.running  = false;
-    st.flashRow = -1;
-    st.perfect  = false;
-    document.getElementById('stackerScore').textContent = '0';
-    document.getElementById('stackerLevel').textContent = '1';
-    document.getElementById('stackerCombo').textContent = '0';
-    document.getElementById('stackerStartBtn').textContent = '▶ Start';
-    stackerDraw();
-}
-
-function startStacker() {
-    const st = stackerState;
-    if (st.over) { resetStacker(); }
-    if (st.running) return;
-    st.running = true;
-    document.getElementById('stackerStartBtn').textContent = '⬜ Stop';
-    st.tickTimer = setInterval(stackerTick, st.speed);
-    stackerDraw();
-}
-
-// --- Tick: przesuń blok w poziomie ---
-function stackerTick() {
-    const st = stackerState;
-    if (!st.running || st.over) return;
-    st.blockX += st.dir;
-    // odbij od ściany
-    if (st.blockX < 0) { st.blockX = 0; st.dir = 1; }
-    if (st.blockX + st.blockW > STACKER_COLS) { st.blockX = STACKER_COLS - st.blockW; st.dir = -1; }
-    stackerDraw();
-}
-
-// --- Kliknięcie gracza: zatrzymaj i sprawdź ---
-function stackerClick() {
-    const st = stackerState;
-    if (st.over) { resetStacker(); return; }
-    if (!st.running) { startStacker(); return; }
-
-    clearInterval(st.tickTimer);
-    st.running = false;
-
-    // Sprawdź overlap z rzędem niżej
-    const row = st.blockRow;
-    let overlap = [];
-
-    if (row === STACKER_ROWS - 1) {
-        // Dolny rząd — wszystko się liczy
-        for (let c = st.blockX; c < st.blockX + st.blockW; c++) overlap.push(c);
-    } else {
-        // Sprawdź które kolumny nowego bloku pokrywają się z rzędem niżej
-        const prevRow = row + 1;
-        for (let c = st.blockX; c < st.blockX + st.blockW; c++) {
-            if (st.board[prevRow][c]) overlap.push(c);
-        }
-    }
-
-    if (overlap.length === 0) {
-        // Brak overlap — koniec gry
-        stackerGameOver();
-        return;
-    }
-
-    // Perfekcyjne zatrzymanie (cały blok pokryty)
-    st.perfect = (overlap.length === st.blockW);
-
-    // Zapisz blok na planszy
-    st.board[row] = Array(STACKER_COLS).fill(false);
-    overlap.forEach(c => { st.board[row][c] = true; });
-
-    // Punkty
-    const pts = overlap.length * 10 * st.level + (st.perfect ? 50 : 0);
-    st.score += pts;
-    st.combo = st.perfect ? st.combo + 1 : 0;
-    document.getElementById('stackerScore').textContent = st.score;
-    document.getElementById('stackerCombo').textContent = st.combo;
-    if (st.score > st.highScore) {
-        st.highScore = st.score;
-        document.getElementById('stackerHighScore').textContent = st.highScore;
-        document.getElementById('stackerBest').textContent = st.highScore;
-    }
-
-    // Flash na rzędzie
-    st.flashRow   = row;
-    st.flashAlpha = 1.0;
-
-    // Nowy blok — przejdź rząd wyżej
-    st.blockW = overlap.length; // blok zwęża się
-    st.blockRow = row - 1;
-
-    // Sprawdź wygrana (dotarcie na szczyt)
-    if (st.blockRow < 0) {
-        stackerWin();
-        return;
-    }
-
-    // Wyśrodkuj nowy blok
-    st.blockX = Math.max(0, Math.min(STACKER_COLS - st.blockW, Math.floor((STACKER_COLS - st.blockW) / 2)));
-
-    // Zwiększ poziom i prędkość
-    st.level = STACKER_ROWS - st.blockRow;
-    document.getElementById('stackerLevel').textContent = st.level;
-    const newSpeed = Math.max(80, 380 - (st.level - 1) * 22);
-    st.speed = newSpeed;
-
-    stackerDraw();
-
-    // Krótka pauza przed wznowieniem
-    setTimeout(() => {
-        if (!st.over) {
-            st.running = true;
-            st.tickTimer = setInterval(stackerTick, st.speed);
-        }
-    }, st.perfect ? 400 : 200);
-}
-
-function stackerGameOver() {
-    const st = stackerState;
-    st.over = true;
-    st.running = false;
-    clearInterval(st.tickTimer);
-    document.getElementById('stackerStartBtn').textContent = '↺ Nowa gra';
-    stackerDraw();
-    setTimeout(() => {
-        showOutroCard('stacker',
-            'Wieża Runęła!',
-            `Dotarłeś do poziomu ${st.level} ze ${st.score} punktami. Blok nie miał oparcia!`,
-            'C', false);
-    }, 400);
-}
-
-function stackerWin() {
-    const st = stackerState;
-    st.over = true;
-    st.running = false;
-    clearInterval(st.tickTimer);
-    markGameWon('stacker');
-    document.getElementById('stackerStartBtn').textContent = '↺ Nowa gra';
-    stackerDraw();
-    setTimeout(() => {
-        showOutroCard('stacker',
-            '🏆 Wieża Ukończona!',
-            `Idealne ułożenie wszystkich ${STACKER_ROWS} poziomów! Wynik: ${st.score} pkt. Architektoniczny geniusz!`,
-            'S', true);
-    }, 600);
-}
-
-// --- Rysowanie ---
-function stackerDraw() {
-    const canvas = stackerCanvas();
-    const ctx = stackerCtx();
-    if (!canvas || !ctx) return;
-    const st = stackerState;
-    const C = STACKER_CELL;
-    const W = STACKER_COLS * C;
-    const H = STACKER_ROWS * C;
-
-    // Tło
-    ctx.fillStyle = '#000d0a';
-    ctx.fillRect(0, 0, W, H);
-
-    // Siatka
-    ctx.strokeStyle = 'rgba(0,255,204,0.06)';
-    ctx.lineWidth = 1;
-    for (let r = 0; r <= STACKER_ROWS; r++) {
-        ctx.beginPath(); ctx.moveTo(0, r*C); ctx.lineTo(W, r*C); ctx.stroke();
-    }
-    for (let c = 0; c <= STACKER_COLS; c++) {
-        ctx.beginPath(); ctx.moveTo(c*C, 0); ctx.lineTo(c*C, H); ctx.stroke();
-    }
-
-    // Kolor bloku zależny od rzędu (gradient od cyan do żółtego)
-    function rowColor(row, alpha=1) {
-        const t = 1 - row / (STACKER_ROWS - 1);
-        const r = Math.round(t * 255);
-        const g = Math.round(255 - t * 50);
-        const b = Math.round((1-t) * 204);
-        return `rgba(${r},${g},${b},${alpha})`;
-    }
-
-    // Ułożone bloki
-    for (let r = 0; r < STACKER_ROWS; r++) {
-        for (let c = 0; c < STACKER_COLS; c++) {
-            if (!st.board[r][c]) continue;
-            const x = c * C, y = r * C;
-            const col = rowColor(r);
-
-            // Flash efekt
-            if (r === st.flashRow && st.flashAlpha > 0) {
-                ctx.fillStyle = `rgba(255,255,255,${st.flashAlpha * 0.6})`;
-                ctx.fillRect(x, y, C, C);
-                st.flashAlpha -= 0.08;
-                if (st.flashAlpha < 0) st.flashAlpha = 0;
-            }
-
-            // Blok
-            ctx.fillStyle = col;
-            ctx.fillRect(x+2, y+2, C-4, C-4);
-
-            // Highlight
-            ctx.fillStyle = 'rgba(255,255,255,0.25)';
-            ctx.fillRect(x+2, y+2, C-4, 10);
-
-            // Glow
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = col;
-            ctx.fillStyle = col;
-            ctx.fillRect(x+2, y+2, C-4, C-4);
-            ctx.shadowBlur = 0;
-
-            // Border
-            ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(x+2, y+2, C-4, C-4);
-        }
-    }
-
-    // Ruchomy blok (tylko gdy gra trwa)
-    if (st.running && !st.over) {
-        const row = st.blockRow;
-        const col = rowColor(row, 0.95);
-        for (let i = 0; i < st.blockW; i++) {
-            const x = (st.blockX + i) * C;
-            const y = row * C;
-
-            // Glow
-            ctx.shadowBlur = 16;
-            ctx.shadowColor = col;
-            ctx.fillStyle = col;
-            ctx.fillRect(x+2, y+2, C-4, C-4);
-            ctx.shadowBlur = 0;
-
-            // Highlight
-            ctx.fillStyle = 'rgba(255,255,255,0.3)';
-            ctx.fillRect(x+2, y+2, C-4, 10);
-
-            // Border
-            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-            ctx.lineWidth = 1.5;
-            ctx.strokeRect(x+2, y+2, C-4, C-4);
-        }
-
-        // Podgląd gdzie wyląduje (ghost)
-        if (st.blockRow < STACKER_ROWS - 1) {
-            const ghostCol = rowColor(st.blockRow + 1, 0.12);
-            for (let i = 0; i < st.blockW; i++) {
-                const prevRow = st.blockRow + 1;
-                if (st.board[prevRow][st.blockX + i]) {
-                    const x = (st.blockX + i) * C;
-                    const y = prevRow * C;
-                    ctx.fillStyle = ghostCol;
-                    ctx.fillRect(x+2, y+2, C-4, C-4);
-                    ctx.strokeStyle = rowColor(prevRow, 0.3);
-                    ctx.lineWidth = 1;
-                    ctx.strokeRect(x+2, y+2, C-4, C-4);
-                }
-            }
-        }
-    }
-
-    // Ekran gry przez — "GAME OVER"
-    if (st.over) {
-        ctx.fillStyle = 'rgba(0,0,0,0.75)';
-        ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = '#00ffcc';
-        ctx.font = 'bold 28px Rajdhani, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(st.score > 0 ? 'KONIEC GRY' : 'STACKER', W/2, H/2 - 20);
-        ctx.fillStyle = 'rgba(255,255,255,0.5)';
-        ctx.font = '16px Rajdhani, sans-serif';
-        ctx.fillText('Kliknij aby zagrać ponownie', W/2, H/2 + 16);
-    }
-
-    // Ekran startowy
-    if (!st.running && !st.over && st.score === 0) {
-        ctx.fillStyle = 'rgba(0,0,0,0.6)';
-        ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = '#00ffcc';
-        ctx.font = 'bold 32px Rajdhani, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = '#00ffcc';
-        ctx.fillText('STACKER', W/2, H/2 - 24);
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = 'rgba(255,255,255,0.45)';
-        ctx.font = '15px Rajdhani, sans-serif';
-        ctx.fillText('Kliknij START aby zacząć', W/2, H/2 + 12);
-        ctx.fillStyle = 'rgba(0,255,204,0.3)';
-        ctx.font = '13px Rajdhani, sans-serif';
-        ctx.fillText('Spacja lub kliknięcie = zatrzymaj blok', W/2, H/2 + 36);
-    }
-
-    // Efekt "PERFECT!" 
-    if (st.perfect && st.flashAlpha > 0.5) {
-        ctx.fillStyle = `rgba(0,255,204,${(st.flashAlpha - 0.5) * 1.5})`;
-        ctx.font = 'bold 22px Rajdhani, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = '#00ffcc';
-        ctx.fillText('✦ PERFECT! ✦', W/2, st.blockRow * C + C*2);
-        ctx.shadowBlur = 0;
-    }
-}
-
-// --- Event listeners ---
-function initStackerEvents() {
-    const canvas = stackerCanvas();
-    if (!canvas) return;
-    canvas.addEventListener('click', stackerClick);
-    canvas.addEventListener('touchend', (e) => { e.preventDefault(); stackerClick(); }, { passive: false });
-}
-
-// Spacja jako trigger
-document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' && document.getElementById('stacker')?.style.display !== 'none') {
-        e.preventDefault();
-        stackerClick();
-    }
-});
